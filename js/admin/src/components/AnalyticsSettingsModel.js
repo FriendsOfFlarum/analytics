@@ -1,5 +1,4 @@
 import Modal from 'flarum/components/Modal';
-import Group from 'flarum/models/Group';
 import Button from 'flarum/components/Button';
 import saveConfig from 'flarum/utils/saveConfig';
 
@@ -7,8 +6,8 @@ export default class AnalyticsSettingsModal extends Modal {
   constructor(...args) {
     super(...args);
 
-    this.googleAnalytics = app.config['hyn.analytics.google-analytics'] || '';
-    this.piwik = app.config['hyn.analytics.piwik'] || '';
+    this.googleAnalytics = m.prop(app.config['hyn.analytics.google-analytics'] || '');
+    this.piwik = m.prop(app.config['hyn.analytics.piwik'] || '');
   }
 
   className() {
@@ -34,6 +33,15 @@ export default class AnalyticsSettingsModal extends Modal {
           //  <input className="FormControl" value={this.piwik()} oninput={m.withAttr('value', this.piwik)}/>
           //</div>
 
+
+            <div className="Form-group">
+                {Button.component({
+                    type: 'submit',
+                    className: 'Button Button--primary AnalyticsSettingsModal-save',
+                    loading: this.loading,
+                    children: 'Save Changes'
+                })}
+            </div>
         </div>
       </div>
     );
@@ -48,7 +56,7 @@ export default class AnalyticsSettingsModal extends Modal {
 
     saveConfig({
       'hyn.analytics.google-analytics': this.googleAnalytics(),
-      'hyn.analytics.piwik': this.piwik()
+      //'hyn.analytics.piwik': this.piwik()
     }).then(
       () => this.hide(),
       () => {

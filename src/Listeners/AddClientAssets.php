@@ -8,7 +8,6 @@ class AddClientAssets
 {
     public function subscribe(Dispatcher $events)
     {
-//        $events->listen(RegisterLocales::class, [$this, 'addLocale']);
         $events->listen(BuildClientView::class, [$this, 'addAssets']);
     }
 
