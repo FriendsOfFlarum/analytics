@@ -1,22 +1,23 @@
 <?php namespace Hyn\Analytics\Listeners;
 
-use Flarum\Events\RegisterLocales;
-use Flarum\Events\BuildClientView;
+use Flarum\Event\ConfigureClientView;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class AddClientAssets
 {
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(BuildClientView::class, [$this, 'addAssets']);
+        $events->listen(ConfigureClientView::class, [$this, 'addAssets']);
     }
 
-    public function addAssets(BuildClientView $event)
+    public function addAssets(ConfigureClientView $event)
     {
-        $event->adminAssets([
-            __DIR__.'/../../js/admin/dist/extension.js',
-        ]);
+        if($event->isAdmin()) {
+            $event->addAssets([
+                __DIR__ . '/../../js/admin/dist/extension.js',
+            ]);
 
-        $event->adminBootstrapper('analytics/main');
+            $event->addBootstrapper('analytics/main');
+        }
     }
 }

@@ -1,6 +1,8 @@
-<?php
-require_once __DIR__ . "/vendor/autoload.php";
+<?php namespace Hyn\Analytics;
 
-use Hyn\Analytics\Extension;
+use Illuminate\Contracts\Events\Dispatcher;
 
-return Extension::class;
+return function(Dispatcher $events) {
+    $events->subscribe(Listeners\AddClientAssets::class);
+    $events->subscribe(Listeners\AddTrackingJs::class);
+};

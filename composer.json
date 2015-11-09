@@ -1,4 +1,34 @@
 {
+    "name": "hyn/analytics",
+    "description": "Tracks analytics using for instance googles metric tool analytics",
+    "keywords": ["analytics"],
+    "type": "flarum-extension",
+    "version": "0.2.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniël Klabbers",
+            "email": "daniel+flarum@klabbers.email",
+            "homepage": "http://hyn.io"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/hyn/flarum-analytics/issues",
+        "source": "https://github.com/hyn/flarum-analytics"
+    },
+    "require": {
+        "flarum/core": "^0.1.0-beta.3"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Analytics, visitor tracking",
+            "icon": {
+                "name": "line-chart",
+                "backgroundColor": "#FF9D00",
+                "color": "#FF1800"
+            }
+        }
+    },
     "autoload": {
         "psr-4": {
             "Hyn\\Analytics\\": "src/"
