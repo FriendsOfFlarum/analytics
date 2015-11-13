@@ -1,5 +1,5 @@
 {
-    "name": "hyn/analytics",
+    "name": "hyn/flarum-analytics",
     "description": "Tracks analytics using for instance googles metric tool analytics",
     "keywords": ["analytics"],
     "type": "flarum-extension",
