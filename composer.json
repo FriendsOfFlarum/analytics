@@ -21,7 +21,7 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "Analytics, visitor tracking",
+            "title": "Analytics",
             "icon": {
                 "name": "line-chart",
                 "backgroundColor": "#FF9D00",

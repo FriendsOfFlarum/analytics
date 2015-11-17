@@ -3,6 +3,6 @@ import app from 'flarum/app';
 
 import AnalyticsSettingsModal from 'hyn/analytics/components/AnalyticsSettingsModal';
 
-app.initializers.add('analytics', app => {
+app.initializers.add('hyn-analytics', app => {
   app.extensionSettings.analytics = () => app.modal.show(new AnalyticsSettingsModal());
 });
