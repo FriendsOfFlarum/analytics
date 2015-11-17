@@ -1,4 +1,4 @@
-System.register('analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export) {
+System.register('hyn/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export) {
   'use strict';
 
   var SettingsModal, AnalyticsSettingsModal;
@@ -47,7 +47,7 @@ System.register('analytics/components/AnalyticsSettingsModal', ['flarum/componen
     }
   };
 });;
-System.register('analytics/main', ['flarum/extend', 'flarum/app', 'analytics/components/AnalyticsSettingsModal'], function (_export) {
+System.register('hyn/analytics/main', ['flarum/extend', 'flarum/app', 'hyn/analytics/components/AnalyticsSettingsModal'], function (_export) {
   'use strict';
 
   var extend, app, AnalyticsSettingsModal;
@@ -56,8 +56,8 @@ System.register('analytics/main', ['flarum/extend', 'flarum/app', 'analytics/com
       extend = _flarumExtend.extend;
     }, function (_flarumApp) {
       app = _flarumApp['default'];
-    }, function (_analyticsComponentsAnalyticsSettingsModal) {
-      AnalyticsSettingsModal = _analyticsComponentsAnalyticsSettingsModal['default'];
+    }, function (_hynAnalyticsComponentsAnalyticsSettingsModal) {
+      AnalyticsSettingsModal = _hynAnalyticsComponentsAnalyticsSettingsModal['default'];
     }],
     execute: function () {
 

@@ -17,7 +17,7 @@ class AddClientAssets
                 __DIR__ . '/../../js/admin/dist/extension.js',
             ]);
 
-            $event->addBootstrapper('analytics/main');
+            $event->addBootstrapper('hyn/analytics/main');
         }
     }
 }
