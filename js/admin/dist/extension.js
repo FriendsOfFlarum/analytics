@@ -61,8 +61,8 @@ System.register('hyn/analytics/main', ['flarum/extend', 'flarum/app', 'hyn/analy
     }],
     execute: function () {
 
-      app.initializers.add('analytics', function (app) {
-        app.extensionSettings.analytics = function () {
+      app.initializers.add('hyn-analytics', function (app) {
+        app.extensionSettings['hyn-analytics'] = function () {
           return app.modal.show(new AnalyticsSettingsModal());
         };
       });
