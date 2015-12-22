@@ -27,7 +27,7 @@ class AddTrackingJs
             if($this->settings->get('hyn.analytics.google')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/google-analytics.js'));
                 $js    = str_replace("%%TRACKING_CODE%%", $this->settings->get('hyn.analytics.google'), $rawJs);
-                $event->view->addFootString($js);
+                $event->view->addHeadString($js);
             }
         }
     }

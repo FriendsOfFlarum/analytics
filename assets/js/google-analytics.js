@@ -6,5 +6,4 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', '%%TRACKING_CODE%%', 'auto');
-    ga('send', 'pageview');
 </script>

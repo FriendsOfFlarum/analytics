@@ -18,6 +18,13 @@ class AddClientAssets
             ]);
 
             $event->addBootstrapper('hyn/analytics/main');
+        } elseif($event->isForum())
+        {
+            $event->addAssets([
+                __DIR__ . '/../../js/forum/dist/extension.js'
+            ]);
+
+            $event->addBootstrapper('hyn/analytics/main');
         }
     }
 }
