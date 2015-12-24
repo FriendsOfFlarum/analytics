@@ -3,7 +3,6 @@
     "description": "Tracks analytics using for instance googles metric tool analytics",
     "keywords": ["analytics"],
     "type": "flarum-extension",
-    "version": "0.2.0",
     "license": "MIT",
     "authors": [
         {
