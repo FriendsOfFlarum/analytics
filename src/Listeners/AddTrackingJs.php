@@ -29,6 +29,11 @@ class AddTrackingJs
                 $js    = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.google'), $rawJs);
                 $event->view->addHeadString($js);
             }
+
+            if($this->settings->get('flagrow.analytics.piwik')) {
+               $rawJs = $this->settings->get('flagrow.analytics.piwik');
+               $event->view->addHeadString($rawJs);
+            }
         }
     }
 }

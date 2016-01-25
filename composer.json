@@ -1,6 +1,6 @@
 {
     "name": "flagrow/flarum-ext-analytics",
-    "description": "Tracks analytics using for instance googles metric tool analytics",
+    "description": "Tracks analytics using googles and piwik metric tool analytics",
     "keywords": ["analytics", "flagrow", "flarum"],
     "type": "flarum-extension",
     "license": "MIT",
@@ -9,6 +9,10 @@
             "name": "Daniël Klabbers",
             "email": "daniel+flarum@klabbers.email",
             "homepage": "http://hyn.io"
+        },
+        {
+          "name": "Santiago Testa Biali",
+          "email": "santiago.t.biali@gmail.com"
         }
     ],
     "support": {

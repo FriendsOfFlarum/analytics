@@ -1,0 +1,14 @@
+flagrow-analytics:
+
+  ##
+  # UNIQUE KEYS - The following keys are used in only one location each.
+  ##
+
+  # Strings in this namespace are used by the admin interface.
+  admin:
+   analytics_settings:
+      title: Analytics Settings
+
+      placeholder:
+        google: Tracking Code
+        piwik: Script

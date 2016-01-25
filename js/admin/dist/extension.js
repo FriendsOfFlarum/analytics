@@ -23,7 +23,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
         }, {
           key: 'title',
           value: function title() {
-            return 'Analytics Settings';
+            return app.translator.trans('flagrow-analytics.admin.analytics_settings.title');
           }
         }, {
           key: 'form',
@@ -36,7 +36,16 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                 null,
                 'Google Analytics'
               ),
-              m('input', { className: 'FormControl', bidi: this.setting('flagrow.analytics.google') })
+              m('input', { placeholder: app.translator.trans('flagrow-analytics.admin.analytics_settings.placeholder.google'),
+                className: 'FormControl', bidi: this.setting('flagrow.analytics.google') }),
+              m('br', null),
+              m(
+                'label',
+                null,
+                ' Piwik '
+              ),
+              m('textarea', { placeholder: app.translator.trans('flagrow-analytics.admin.analytics_settings.placeholder.piwik'),
+                className: 'FormControl', rows: '3', bidi: this.setting('flagrow.analytics.piwik') })
             )];
           }
         }]);
