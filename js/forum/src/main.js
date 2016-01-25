@@ -2,7 +2,7 @@ import { extend } from 'flarum/extend';
 import app from 'flarum/app';
 import Page from 'flarum/components/Page';
 
-app.initializers.add('hyn-analytics', app => {
+app.initializers.add('flagrow-analytics', app => {
     extend(Page.prototype, 'init', function(vdom)
     {
         if(typeof ga != 'undefined') {

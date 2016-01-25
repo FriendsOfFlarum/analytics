@@ -1,4 +1,4 @@
-<?php namespace Hyn\Analytics;
+<?php namespace Flagrow\Analytics;
 
 use Illuminate\Contracts\Events\Dispatcher;
 

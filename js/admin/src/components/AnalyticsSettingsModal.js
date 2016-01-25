@@ -13,7 +13,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
     return [
       <div className="Form-group">
         <label>Google Analytics</label>
-        <input className="FormControl" bidi={this.setting('hyn.analytics.google')}/>
+        <input className="FormControl" bidi={this.setting('flagrow.analytics.google')}/>
       </div>
     ];
   }

@@ -1,4 +1,4 @@
-System.register('hyn/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export) {
+System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export) {
   'use strict';
 
   var SettingsModal, AnalyticsSettingsModal;
@@ -36,7 +36,7 @@ System.register('hyn/analytics/components/AnalyticsSettingsModal', ['flarum/comp
                 null,
                 'Google Analytics'
               ),
-              m('input', { className: 'FormControl', bidi: this.setting('hyn.analytics.google') })
+              m('input', { className: 'FormControl', bidi: this.setting('flagrow.analytics.google') })
             )];
           }
         }]);
@@ -47,7 +47,7 @@ System.register('hyn/analytics/components/AnalyticsSettingsModal', ['flarum/comp
     }
   };
 });;
-System.register('hyn/analytics/main', ['flarum/extend', 'flarum/app', 'hyn/analytics/components/AnalyticsSettingsModal'], function (_export) {
+System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flagrow/analytics/components/AnalyticsSettingsModal'], function (_export) {
   'use strict';
 
   var extend, app, AnalyticsSettingsModal;
@@ -56,13 +56,13 @@ System.register('hyn/analytics/main', ['flarum/extend', 'flarum/app', 'hyn/analy
       extend = _flarumExtend.extend;
     }, function (_flarumApp) {
       app = _flarumApp['default'];
-    }, function (_hynAnalyticsComponentsAnalyticsSettingsModal) {
-      AnalyticsSettingsModal = _hynAnalyticsComponentsAnalyticsSettingsModal['default'];
+    }, function (_flagrowAnalyticsComponentsAnalyticsSettingsModal) {
+      AnalyticsSettingsModal = _flagrowAnalyticsComponentsAnalyticsSettingsModal['default'];
     }],
     execute: function () {
 
-      app.initializers.add('hyn-analytics', function (app) {
-        app.extensionSettings['hyn-analytics'] = function () {
+      app.initializers.add('flagrow-analytics', function (app) {
+        app.extensionSettings['flagrow-analytics'] = function () {
           return app.modal.show(new AnalyticsSettingsModal());
         };
       });

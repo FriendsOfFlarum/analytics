@@ -1,4 +1,4 @@
-<?php namespace Hyn\Analytics\Listeners;
+<?php namespace Flagrow\Analytics\Listeners;
 
 use Flarum\Event\ConfigureClientView;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -24,9 +24,9 @@ class AddTrackingJs
     public function addAssets(ConfigureClientView $event)
     {
         if($event->isForum()) {
-            if($this->settings->get('hyn.analytics.google')) {
+            if($this->settings->get('flagrow.analytics.google')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/google-analytics.js'));
-                $js    = str_replace("%%TRACKING_CODE%%", $this->settings->get('hyn.analytics.google'), $rawJs);
+                $js    = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.google'), $rawJs);
                 $event->view->addHeadString($js);
             }
         }

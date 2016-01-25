@@ -1,4 +1,4 @@
-System.register('hyn/analytics/main', ['flarum/extend', 'flarum/app', 'flarum/components/Page'], function (_export) {
+System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flarum/components/Page'], function (_export) {
     'use strict';
 
     var extend, app, Page;
@@ -12,9 +12,11 @@ System.register('hyn/analytics/main', ['flarum/extend', 'flarum/app', 'flarum/co
         }],
         execute: function () {
 
-            app.initializers.add('hyn-analytics', function (app) {
+            app.initializers.add('flagrow-analytics', function (app) {
                 extend(Page.prototype, 'init', function (vdom) {
-                    ga('send', 'pageview', { page: m.route() });
+                    if (typeof ga != 'undefined') {
+                        ga('send', 'pageview', { page: m.route() });
+                    }
                 });
             });
         }

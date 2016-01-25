@@ -1,4 +1,4 @@
-<?php namespace Hyn\Analytics\Listeners;
+<?php namespace Flagrow\Analytics\Listeners;
 
 use Flarum\Event\ConfigureClientView;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -17,14 +17,14 @@ class AddClientAssets
                 __DIR__ . '/../../js/admin/dist/extension.js',
             ]);
 
-            $event->addBootstrapper('hyn/analytics/main');
+            $event->addBootstrapper('flagrow/analytics/main');
         } elseif($event->isForum())
         {
             $event->addAssets([
                 __DIR__ . '/../../js/forum/dist/extension.js'
             ]);
 
-            $event->addBootstrapper('hyn/analytics/main');
+            $event->addBootstrapper('flagrow/analytics/main');
         }
     }
 }

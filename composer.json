@@ -1,7 +1,7 @@
 {
-    "name": "hyn/flarum-analytics",
+    "name": "flagrow/flarum-ext-analytics",
     "description": "Tracks analytics using for instance googles metric tool analytics",
-    "keywords": ["analytics"],
+    "keywords": ["analytics", "flagrow", "flarum"],
     "type": "flarum-extension",
     "license": "MIT",
     "authors": [
@@ -12,8 +12,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/hyn/flarum-analytics/issues",
-        "source": "https://github.com/hyn/flarum-analytics"
+        "issues": "https://github.com/flagrow/flarum-ext-analytics/issues",
+        "source": "https://github.com/flagrow/flarum-ext-analytics"
     },
     "require": {
         "flarum/core": "^0.1.0-beta.3"
@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Hyn\\Analytics\\": "src/"
+            "Flagrow\\Analytics\\": "src/"
         }
     }
 }
