@@ -6,3 +6,21 @@
 # 0.3.0
 
 - Piwik Added
+
+# 0.2.1
+
+- Now actually registers a visit to any next page, instead of only the first. (only for Google Analytics)
+
+# 0.2.0
+
+- Support beta 3 and 4
+
+# 0.1.0
+
+- Easily set tracking codes in admin
+- Automatically add tracking javascripts to forum using the tracking information provided in admin
+- Support at least google analytics
+
+# ROADMAP
+
+- Support more trackers: piwik, more?
