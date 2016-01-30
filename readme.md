@@ -5,25 +5,25 @@ A [Flarum](http://flarum.org) extension that add google's and  piwik's analytic 
 
 ### Screenshot
 
-![Imgur](http://i.imgur.com/bn87FA4.jpg)
+![Imgur](http://i.imgur.com/IaYh5HO.jpg)
 
-### goals
+### Goals
 
 - Allow Google's and Piwiki's analytic service.
 
 
-### installation
+### Installation
 
 ```bash
 composer require flagrow/flarum-ext-analytics
 ```
 
-### configuration
+### Configuration
 
+- Piwiki's url should not end with an '/', ex: domain.com or domain.com/piwik
 - Visit the extensions tab in your admin to configure your analytics services.
 
-
-### links
+### Links
 
 - [on github](https://github.com/flagrow/flarum-ext-analytics)
 - [on packagist](http://packagist.com/packages/flagrow/flarum-ext-analytics)

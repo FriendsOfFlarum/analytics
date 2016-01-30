@@ -10,5 +10,12 @@ flagrow-analytics:
       title: Analytics Settings
 
       placeholder:
-        google: Tracking Code
-        piwik: Script
+        google:
+          tracking_code: Tracking Code
+
+        piwik:
+          url: piwiki's url
+          3_url: url
+          setting_1: Track visitors across all subdomains of Flarum
+          setting_2: Prepend the site domain to the page title when tracking
+          setting_3: In the "Outlinks" report, hide clicks to known alias URLs
