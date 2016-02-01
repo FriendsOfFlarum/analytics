@@ -3,7 +3,7 @@
   //1st
   //2nd
   //3rd
-  _paq.push(['trackPageView']);
+
   _paq.push(['enableLinkTracking']);
   (function() {
     var u="//##piwik_url##/";

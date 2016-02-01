@@ -3,10 +3,12 @@ import app from 'flarum/app';
 import Page from 'flarum/components/Page';
 
 app.initializers.add('flagrow-analytics', app => {
-    extend(Page.prototype, 'init', function(vdom)
-    {
-        if(typeof ga != 'undefined') {
+    extend(Page.prototype, 'init', function (vdom) {
+        if (typeof ga != 'undefined') {
             ga('send', 'pageview', {page: m.route()});
+        }
+        if (typeof _paq != Array) {
+            _paq.push(['trackPageView']);
         }
     });
 });
