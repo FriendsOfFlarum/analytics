@@ -33,21 +33,28 @@ class AddTrackingJs
 
             if ($this->settings->get('flagrow.analytics.status.piwik') && $this->settings->get('flagrow.analytics.piwik.url')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.js'));
+
+                $options = [];
+
                 if ($this->settings->get('flagrow.analytics.piwik.1')) {
-                    $rawJs = str_replace("//1st", "_paq.push(['setCookieDomain', '*." . $_SERVER['HTTP_HOST'] . "']);",
-                        $rawJs);
+                    $options[] = "_paq.push(['setCookieDomain', '*." . $_SERVER['HTTP_HOST'] . "']);";
                 }
 
                 if ($this->settings->get('flagrow.analytics.piwik.2')) {
-                    $rawJs = str_replace("//2nd",
-                        "_paq.push(['setDocumentTitle', document.domain + '/' + document.title]);", $rawJs);
+                    $options[] = "_paq.push(['setDocumentTitle', document.domain + '/' + document.title]);";
                 }
 
                 if ($this->settings->get('flagrow.analytics.piwik.3') && $this->settings->get('flagrow.analytics.piwik.3.url')) {
-                    $rawJs = str_replace("//3rd",
-                        "_paq.push(['setDomains', ['*." . $this->settings->get('flagrow.analytics.piwik.3.url') . "']]);",
-                        $rawJs);
+                    $options[] = "_paq.push(['setDomains', ['*." . $this->settings->get('flagrow.analytics.piwik.3.url') . "']]);";
                 }
+
+                if(count($options)) {
+                    $options = implode('\n', $options);
+                } else {
+                    $options = '';
+                }
+
+                $rawJs = str_replace('##piwik_options##', $options, $rawJs);
 
                 $rawJs = str_replace("##piwik_url##", $this->settings->get('flagrow.analytics.piwik.url'), $rawJs);
                 $event->view->addHeadString($rawJs);
