@@ -12,25 +12,38 @@ class AddTrackingJs
     protected $settings;
 
 
+    /**
+     * AddTrackingJs constructor.
+     *
+     * @param SettingsRepositoryInterface $settings
+     */
     public function __construct(SettingsRepositoryInterface $settings)
     {
         $this->settings = $settings;
     }
 
+    /**
+     * @param Dispatcher $events
+     */
     public function subscribe(Dispatcher $events)
     {
         $events->listen(ConfigureClientView::class, [$this, 'addAssets']);
     }
 
+    /**
+     * @param ConfigureClientView $event
+     */
     public function addAssets(ConfigureClientView $event)
     {
         if ($event->isForum()) {
+            // Add google analytics if tracking UA has been configured.
             if ($this->settings->get('flagrow.analytics.status.google') && $this->settings->get('flagrow.analytics.google')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/google-analytics.js'));
                 $js    = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.google'), $rawJs);
                 $event->view->addHeadString($js);
             }
 
+            // Add piwik specific tracking code if configured in the admin.
             if ($this->settings->get('flagrow.analytics.status.piwik') && $this->settings->get('flagrow.analytics.piwik.url')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.js'));
 
@@ -48,12 +61,14 @@ class AddTrackingJs
                     $options[] = "_paq.push(['setDomains', ['*." . $this->settings->get('flagrow.analytics.piwik.3.url') . "']]);";
                 }
 
+                // Sanity check, add empty string or the combined array.
                 if(count($options)) {
                     $options = implode('\n', $options);
                 } else {
                     $options = '';
                 }
 
+                // Replace the ##piwik_options## has with the settings or an empty string.
                 $rawJs = str_replace('##piwik_options##', $options, $rawJs);
 
                 $rawJs = str_replace("##piwik_url##", $this->settings->get('flagrow.analytics.piwik.url'), $rawJs);
