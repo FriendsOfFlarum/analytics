@@ -1,9 +1,7 @@
 <script type="text/javascript">
-    // inject google analytics code by flagrow/flarum-ext-analytics
-
+    // inject Piwik analytics code by flagrow/flarum-ext-analytics
     var _paq = _paq || [];
     ##piwik_options##
-
     _paq.push(['enableLinkTracking']);
     (function () {
     var u="//##piwik_url##/";

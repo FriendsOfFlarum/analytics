@@ -17,6 +17,9 @@ System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flaru
                     if (typeof ga != 'undefined') {
                         ga('send', 'pageview', { page: m.route() });
                     }
+                    if (typeof _paq != 'undefined') {
+                        _paq.push(['trackPageView']);
+                    }
                 });
             });
         }

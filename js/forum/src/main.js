@@ -7,7 +7,7 @@ app.initializers.add('flagrow-analytics', app => {
         if (typeof ga != 'undefined') {
             ga('send', 'pageview', {page: m.route()});
         }
-        if (typeof _paq != Array) {
+        if (typeof _paq != 'undefined') {
             _paq.push(['trackPageView']);
         }
     });

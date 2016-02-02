@@ -63,7 +63,7 @@ class AddTrackingJs
 
                 // Sanity check, add empty string or the combined array.
                 if(count($options)) {
-                    $options = implode('\n', $options);
+                    $options = implode("\n    ", $options);
                 } else {
                     $options = '';
                 }
