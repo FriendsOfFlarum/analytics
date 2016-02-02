@@ -1,10 +1,5 @@
 import SettingsModal from 'flarum/components/SettingsModal';
-/*
 
- DO NOT 'GULP WATCH' THIS OR THE SCRIPTS WILL BE LOST
-
-
- */
 export default class AnalyticsSettingsModal extends SettingsModal {
     className() {
         return 'AnalyticsSettingsModal Modal--small';
@@ -47,6 +42,18 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                         <input class="FormControl" bidi={this.setting('flagrow.analytics.piwik.3.url')} placeholder={app.translator.trans('flagrow-analytics.admin.analytics_settings.placeholder.piwik.3_url')}/>
                     </div>
                 </div>
+                  {m(
+                      'script',
+                      "if($('#piwik3').prop('checked') === false){$('#piwik_3_hidden').hide()} $('#piwik3').change(function(){if($('#piwik3').prop('checked') === false) { $('#piwik_3_hidden').hide()} else $('#piwik_3_hidden').show();})"
+                  )}
+                  {m(
+                      'script',
+                      "if($('#status_google').prop('checked') === false){ $('#hidden_google').hide()} $('#status_google').change(function(){if($('#status_google').prop('checked') === false) { $('#hidden_google').hide()} else $('#hidden_google').show();})"
+                  )}
+                  {m(
+                      'script',
+                      "if($('#status_piwik').prop('checked') === false){ $('#hidden_piwik').hide()} $('#status_piwik').change(function(){if($('#status_piwik').prop('checked') === false) { $('#hidden_piwik').hide()} else $('#hidden_piwik').show();})"
+                  )}
             </div>
         ];
     }
