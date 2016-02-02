@@ -41,7 +41,11 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                     <div id="piwik_3_hidden" style="margin-left:10px; ">
                         <input class="FormControl" bidi={this.setting('flagrow.analytics.piwik.3.url')} placeholder={app.translator.trans('flagrow-analytics.admin.analytics_settings.placeholder.piwik.3_url')}/>
                     </div>
+                    <br/>
+                    <input class="FormControl" style="width:20%; float:left; margin-right:5px" bidi={this.setting('flagrow.analytics.piwik.4')} placeholder={app.translator.trans('flagrow-analytics.admin.analytics_settings.placeholder.piwik.setting_4')}/>
+                    <div style="padding: 10px">{app.translator.trans('flagrow-analytics.admin.analytics_settings.placeholder.piwik.site_id')}</div>
                 </div>
+                
                   {m(
                       'script',
                       "if($('#piwik3').prop('checked') === false){$('#piwik_3_hidden').hide()} $('#piwik3').change(function(){if($('#piwik3').prop('checked') === false) { $('#piwik_3_hidden').hide()} else $('#piwik_3_hidden').show();})"

@@ -16,6 +16,8 @@ flagrow-analytics:
         piwik:
           url: piwiki's url
           3_url: url
+          site_id: Site ID
           setting_1: Track visitors across all subdomains of Flarum
           setting_2: Prepend the site domain to the page title when tracking
           setting_3: In the "Outlinks" report, hide clicks to known alias URLs
+          setting_4: ID

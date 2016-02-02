@@ -44,7 +44,9 @@ class AddTrackingJs
             }
 
             // Add piwik specific tracking code if configured in the admin.
-            if ($this->settings->get('flagrow.analytics.status.piwik') && $this->settings->get('flagrow.analytics.piwik.url')) {
+            if ($this->settings->get('flagrow.analytics.status.piwik') &&
+                    $this->settings->get('flagrow.analytics.piwik.url') &&
+                        $this->settings->get('flagrow.analytics.piwik.4')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.js'));
 
                 $options = [];
@@ -60,6 +62,8 @@ class AddTrackingJs
                 if ($this->settings->get('flagrow.analytics.piwik.3') && $this->settings->get('flagrow.analytics.piwik.3.url')) {
                     $options[] = "_paq.push(['setDomains', ['*." . $this->settings->get('flagrow.analytics.piwik.3.url') . "']]);";
                 }
+
+                $options[] = "_paq.push(['setSiteId', " . $this->settings->get('flagrow.analytics.piwik.4') . "]);";
 
                 // Sanity check, add empty string or the combined array.
                 if(count($options)) {
