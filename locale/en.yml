@@ -6,18 +6,16 @@ flagrow-analytics:
 
   # Strings in this namespace are used by the admin interface.
   admin:
-   analytics_settings:
-      title: Analytics Settings
+    title: Analytics Settings
 
-      placeholder:
-        google:
-          tracking_code: Tracking Code
+    field:
+      googleTrackingCode: Tracking Code
+      piwikUrl: Piwik's url
+      piwikSiteId: Site Id
+      piwikAliasUrl: Alias Url
 
-        piwik:
-          url: piwiki's url
-          3_url: url
-          site_id: Site ID
-          setting_1: Track visitors across all subdomains of Flarum
-          setting_2: Prepend the site domain to the page title when tracking
-          setting_3: In the "Outlinks" report, hide clicks to known alias URLs
-          setting_4: ID
+    checkbox:
+      label:
+        piwikTrackSubdomain: Track visitors across all subdomains of Flarum
+        piwikPrependDomain: Prepend the site domain to the page title when tracking
+        piwikHideAliasUrl: In the "Outlinks" report, hide clicks to known alias URLs

@@ -1,3 +1,8 @@
+# 0.3.2
+  - Admin's popup rewrited
+  - [piwik] Site Id option Added
+  - [piwik] Now actually registers a visit to any next page, instead of only the first.
+
 # 0.3.1
 
 - Visual Changes in admin popup
