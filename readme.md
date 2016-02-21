@@ -5,7 +5,7 @@ A [Flarum](http://flarum.org) extension that add google's and  piwik's analytic 
 
 ### Screenshot
 
-![Imgur](http://i.imgur.com/IaYh5HO.jpg)
+![Imgur](http://i.imgur.com/zTTXV8g.jpg)
 
 ### Goals
 
