@@ -23,7 +23,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                 }, {
                     key: 'title',
                     value: function title() {
-                        return app.translator.trans('flagrow-analytics.admin.title');
+                        return app.translator.trans('flagrow-analytics.admin.popup.title');
                     }
                 }, {
                     key: 'form',
@@ -47,7 +47,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                             return _this.inputs[key] = m('input', {
                                 className: 'FormControl',
                                 bidi: _this.setting(_this.settingsPrefix + '.' + key),
-                                placeholder: app.translator.trans('flagrow-analytics.admin.field.' + key)
+                                placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key)
                             });
                         });
 
@@ -63,7 +63,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
 
                         // the labels
                         this.checkboxes.forEach(function (key) {
-                            return _this.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.checkbox.label.' + key)]);
+                            return _this.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)]);
                         });
 
                         return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', { style: { display: $('#statusPiwik').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikUrl'], m('br'), this.inputs['piwikSiteId'], m('br'), this.checkbox['piwikTrackSubdomain'], this.checkbox['label.piwikTrackSubdomain'], m('br'), this.checkbox['piwikPrependDomain'], this.checkbox['label.piwikPrependDomain'], m('br'), this.checkbox['piwikHideAliasUrl'], this.checkbox['label.piwikHideAliasUrl'], m('div', { style: { display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikAliasUrl']])])])];
