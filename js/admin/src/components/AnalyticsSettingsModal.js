@@ -7,7 +7,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
     }
 
     title() {
-        return app.translator.trans('flagrow-analytics.admin.title');
+        return app.translator.trans('flagrow-analytics.admin.popup.title');
     }
 
     form() {
@@ -38,7 +38,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
         this.fields.forEach(key => this.inputs[key] = m('input', {
                 className: 'FormControl',
                 bidi: this.setting(this.settingsPrefix + '.' + key),
-                placeholder: app.translator.trans('flagrow-analytics.admin.field.' + key)
+                placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key)
             })
         );
 
@@ -53,7 +53,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
 
         // the labels
         this.checkboxes.forEach(key => this.checkbox['label.' + key] = m('div', [
-                app.translator.trans('flagrow-analytics.admin.checkbox.label.' + key)
+                app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)
             ])
         );
 
