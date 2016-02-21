@@ -28,5 +28,5 @@
 
 # ROADMAP
 
-- Support more trackers: ~~piwik~~, more?]
+- Support more trackers: ~~piwik~~, more?
 - Add statistics in flarum's admin page
