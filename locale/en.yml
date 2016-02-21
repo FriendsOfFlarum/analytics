@@ -9,7 +9,7 @@ flagrow-analytics:
     title: Analytics Settings
 
     field:
-      googleTrackingCode: Tracking Code
+      googleTrackingCode: Tracking Code ID
       piwikUrl: Piwik's url
       piwikSiteId: Site Id
       piwikAliasUrl: Alias Url
