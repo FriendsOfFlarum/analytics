@@ -1,3 +1,6 @@
+# 0.3.3
+  - Page with statistics added
+
 # 0.3.2
   - Admin's popup rewrited
   - [piwik] Site Id option Added

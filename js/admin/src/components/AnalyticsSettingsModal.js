@@ -16,7 +16,8 @@ export default class AnalyticsSettingsModal extends SettingsModal {
             'googleTrackingCode',
             'piwikUrl',
             'piwikSiteId',
-            'piwikAliasUrl'
+            'piwikAliasUrl',
+            'piwikAuthToken'
         ];
 
         // the checkboxes we need to save.
@@ -36,6 +37,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
 
         // the input fields
         this.fields.forEach(key => this.inputs[key] = m('input', {
+                id: key,
                 className: 'FormControl',
                 bidi: this.setting(this.settingsPrefix + '.' + key),
                 placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key)
@@ -72,10 +74,11 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                     'Piwik ',
                     this.checkbox['statusPiwik']
                 ]),
-                m('div', {style: {display: ($('#statusPiwik').prop('checked') === true ? "block" : "none")}}, [
+                m('div', {className: 'piwik', style: {display: ($('#statusPiwik').prop('checked') === true ? "block" : "none")}}, [
                     this.inputs['piwikUrl'],
                     m('br'),
                     this.inputs['piwikSiteId'],
+                    this.inputs['piwikAuthToken'],
                     m('br'),
                     this.checkbox['piwikTrackSubdomain'],
                     this.checkbox['label.piwikTrackSubdomain'],

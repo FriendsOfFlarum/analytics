@@ -14,6 +14,7 @@ flagrow-analytics:
         piwikUrl: Piwik's url
         piwikSiteId: Site Id
         piwikAliasUrl: Alias Url
+        piwikAuthToken: Authentication token config->users
 
       checkbox:
         label:
@@ -23,5 +24,5 @@ flagrow-analytics:
 
     page:
       nav:
-        title: 'Analytics'
-        description: 'Take a look at Statistics'
+        title: Analytics
+        description: Take a look at Statistics

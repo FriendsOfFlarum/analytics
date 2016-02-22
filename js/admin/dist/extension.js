@@ -14,40 +14,31 @@ System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/
         }],
         execute: function () {
             _export('default', function () {
-                app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
+                if (m.prop(app.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()) {
 
-                extend(AdminNav.prototype, 'items', function (items) {
-                    // add the Analytics tab to the admin navigation menu
-                    items.add('analytics', AdminLinkButton.component({
-                        href: app.route('analytics'),
-                        icon: 'line-chart',
-                        children: app.translator.trans('flagrow-analytics.admin.page.nav.title'),
-                        description: app.translator.trans('flagrow-analytics.admin.page.nav.description')
-                    }));
-                });
+                    app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
+
+                    extend(AdminNav.prototype, 'items', function (items) {
+                        // add the Analytics tab to the admin navigation menu
+                        items.add('analytics', AdminLinkButton.component({
+                            href: app.route('analytics'),
+                            icon: 'line-chart',
+                            children: app.translator.trans('flagrow-analytics.admin.page.nav.title'),
+                            description: app.translator.trans('flagrow-analytics.admin.page.nav.description')
+                        }));
+                    });
+                }
             });
         }
     };
 });;
-System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component', 'flarum/components/Button', 'flarum/utils/saveSettings', 'flarum/components/Alert', 'flarum/components/FieldSet', 'flarum/components/Select', 'flarum/components/Switch'], function (_export) {
+System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component'], function (_export) {
     'use strict';
 
-    var Component, Button, saveSettings, Alert, FieldSet, Select, Switch, AnalyticsPage;
+    var Component, AnalyticsPage;
     return {
         setters: [function (_flarumComponent) {
             Component = _flarumComponent['default'];
-        }, function (_flarumComponentsButton) {
-            Button = _flarumComponentsButton['default'];
-        }, function (_flarumUtilsSaveSettings) {
-            saveSettings = _flarumUtilsSaveSettings['default'];
-        }, function (_flarumComponentsAlert) {
-            Alert = _flarumComponentsAlert['default'];
-        }, function (_flarumComponentsFieldSet) {
-            FieldSet = _flarumComponentsFieldSet['default'];
-        }, function (_flarumComponentsSelect) {
-            Select = _flarumComponentsSelect['default'];
-        }, function (_flarumComponentsSwitch) {
-            Switch = _flarumComponentsSwitch['default'];
         }],
         execute: function () {
             AnalyticsPage = (function (_Component) {
@@ -61,7 +52,15 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
                 babelHelpers.createClass(AnalyticsPage, [{
                     key: 'view',
                     value: function view() {
-                        return [m('div', { className: 'analyticsPage' }, ['This page is under construction'])];
+                        //set the values into the string
+                        this.url = m.prop(app.settings['flagrow.analytics.piwikUrl'])();
+                        this.url += '?idSite=' + m.prop(app.settings['flagrow.analytics.piwikSiteId'])();
+                        this.url += '&token_auth=' + m.prop(app.settings['flagrow.analytics.piwikAuthToken'])();
+                        this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
+                        return [m('div', { className: 'analyticsPage' }, [m('div', { className: 'piwik' }, [m('label', ['Piwik']), m('iframe', {
+                            frameborder: '0',
+                            src: this.url
+                        })])])];
                     }
                 }]);
                 return AnalyticsPage;
@@ -104,7 +103,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                         var _this = this;
 
                         // the fields we need to save
-                        this.fields = ['googleTrackingCode', 'piwikUrl', 'piwikSiteId', 'piwikAliasUrl'];
+                        this.fields = ['googleTrackingCode', 'piwikUrl', 'piwikSiteId', 'piwikAliasUrl', 'piwikAuthToken'];
 
                         // the checkboxes we need to save.
                         this.checkboxes = ['statusGoogle', 'statusPiwik', 'piwikTrackSubdomain', 'piwikPrependDomain', 'piwikHideAliasUrl'];
@@ -118,6 +117,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                         // the input fields
                         this.fields.forEach(function (key) {
                             return _this.inputs[key] = m('input', {
+                                id: key,
                                 className: 'FormControl',
                                 bidi: _this.setting(_this.settingsPrefix + '.' + key),
                                 placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key)
@@ -139,7 +139,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                             return _this.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)]);
                         });
 
-                        return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', { style: { display: $('#statusPiwik').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikUrl'], m('br'), this.inputs['piwikSiteId'], m('br'), this.checkbox['piwikTrackSubdomain'], this.checkbox['label.piwikTrackSubdomain'], m('br'), this.checkbox['piwikPrependDomain'], this.checkbox['label.piwikPrependDomain'], m('br'), this.checkbox['piwikHideAliasUrl'], this.checkbox['label.piwikHideAliasUrl'], m('div', { style: { display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikAliasUrl']])])])];
+                        return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', { className: 'piwik', style: { display: $('#statusPiwik').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikUrl'], m('br'), this.inputs['piwikSiteId'], this.inputs['piwikAuthToken'], m('br'), this.checkbox['piwikTrackSubdomain'], this.checkbox['label.piwikTrackSubdomain'], m('br'), this.checkbox['piwikPrependDomain'], this.checkbox['label.piwikPrependDomain'], m('br'), this.checkbox['piwikHideAliasUrl'], this.checkbox['label.piwikHideAliasUrl'], m('div', { style: { display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikAliasUrl']])])])];
                     }
                 }]);
                 return AnalyticsSettingsModal;
