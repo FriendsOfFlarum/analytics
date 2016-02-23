@@ -1,5 +1,5 @@
 # Analytics by ![flagrow logo](https://avatars0.githubusercontent.com/u/16413865?v=3&s=15) [flagrow](https://discuss.flarum.org/d/1832-flagrow-extension-developer-group)
-![Latest Stable Version](https://poser.pugx.org/flagrow/flarum-ext-analytics/v/stable) ![License](https://poser.pugx.org/flagrow/flarum-ext-analytics/license) ![Gitter](https://badges.gitter.im/flagrow/flarum-ext-analytics.svg)](https://gitter.im/flagrow/chat)
+![Latest Stable Version](https://poser.pugx.org/flagrow/flarum-ext-analytics/v/stable) ![License](https://poser.pugx.org/flagrow/flarum-ext-analytics/license) [![Gitter](https://badges.gitter.im/flagrow/flarum-ext-analytics.svg)](https://gitter.im/flagrow/chat)
 
 
 A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
