@@ -53,7 +53,7 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
                     key: 'view',
                     value: function view() {
                         //Call the piwik application
-                        this.url = '//' + m.prop(app.settings['flagrow.analytics.piwikUrl'])() + '/piwik.php';
+                        this.url = '//' + m.prop(app.settings['flagrow.analytics.piwikUrl'])() + '/index.php';
                         this.url += '?idSite=' + m.prop(app.settings['flagrow.analytics.piwikSiteId'])();
                         this.url += '&token_auth=' + m.prop(app.settings['flagrow.analytics.piwikAuthToken'])();
                         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
