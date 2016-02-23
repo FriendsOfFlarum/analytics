@@ -1,11 +1,12 @@
 # Analytics by ![flagrow logo](https://avatars0.githubusercontent.com/u/16413865?v=3&s=15) [flagrow](https://discuss.flarum.org/d/1832-flagrow-extension-developer-group)
+[![Latest Stable Version](https://poser.pugx.org/flagrow/flarum-ext-analytics/v/stable)][packagist-link] [![License](https://poser.pugx.org/flagrow/flarum-ext-analytics/license)][packagist-link] [![Gitter](https://badges.gitter.im/flagrow/flarum-ext-analytics.svg)](https://gitter.im/flagrow/chat)
 
 
-A [Flarum](http://flarum.org) extension that add google's and  piwik's analytic trackers.
+A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
 
 ### Screenshot
 
-![Imgur](http://i.imgur.com/zTTXV8g.jpg)
+![Imgur](http://i.imgur.com/tv5MQey.jpg) ![Imgur](http://i.imgur.com/GMTSzA5.jpg)
 
 ### Goals
 
@@ -22,6 +23,7 @@ composer require flagrow/flarum-ext-analytics
 
 - Piwiki's url should not end with an '/', ex: domain.com or domain.com/piwik
 - Visit the extensions tab in your admin to configure your analytics services.
+- Visit the Analytics tab in admin to see your piwik's analytics results.
 
 ### Links
 

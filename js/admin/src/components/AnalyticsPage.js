@@ -3,8 +3,8 @@ import Component from 'flarum/Component';
 export default class AnalyticsPage extends Component {
 
     view() {
-        //set the values into the string
-        this.url = 'https://' + m.prop(app.settings['flagrow.analytics.piwikUrl'])()
+        //Call the piwik application
+        this.url = '//' + m.prop(app.settings['flagrow.analytics.piwikUrl'])() + '/piwik.php'
         this.url += '?idSite=' + m.prop(app.settings['flagrow.analytics.piwikSiteId'])()
         this.url += '&token_auth=' + m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()
         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today'

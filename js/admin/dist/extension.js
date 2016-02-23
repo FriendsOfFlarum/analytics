@@ -14,12 +14,12 @@ System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/
         }],
         execute: function () {
             _export('default', function () {
+                // add the Analytics tab to the admin navigation menu if piwik is enabled
                 if (m.prop(app.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()) {
 
                     app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
 
                     extend(AdminNav.prototype, 'items', function (items) {
-                        // add the Analytics tab to the admin navigation menu
                         items.add('analytics', AdminLinkButton.component({
                             href: app.route('analytics'),
                             icon: 'line-chart',
@@ -52,8 +52,8 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
                 babelHelpers.createClass(AnalyticsPage, [{
                     key: 'view',
                     value: function view() {
-                        //set the values into the string
-                        this.url = 'https://' + m.prop(app.settings['flagrow.analytics.piwikUrl'])();
+                        //Call the piwik application
+                        this.url = '//' + m.prop(app.settings['flagrow.analytics.piwikUrl'])() + '/piwik.php';
                         this.url += '?idSite=' + m.prop(app.settings['flagrow.analytics.piwikSiteId'])();
                         this.url += '&token_auth=' + m.prop(app.settings['flagrow.analytics.piwikAuthToken'])();
                         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
