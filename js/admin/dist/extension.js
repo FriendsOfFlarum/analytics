@@ -1,52 +1,53 @@
-System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/components/AdminNav', 'flarum/components/AdminLinkButton', 'flagrow/analytics/components/AnalyticsPage'], function (_export) {
-    'use strict';
+'use strict';
 
+System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/components/AdminNav', 'flarum/components/AdminLinkButton', 'flagrow/analytics/components/AnalyticsPage'], function (_export, _context) {
     var extend, AdminNav, AdminLinkButton, AnalyticsPage;
+
+    _export('default', function () {
+        // add the Analytics tab to the admin navigation menu if piwik is enabled
+        if (m.prop(app.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()) {
+
+            app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
+
+            extend(AdminNav.prototype, 'items', function (items) {
+                items.add('analytics', AdminLinkButton.component({
+                    href: app.route('analytics'),
+                    icon: 'line-chart',
+                    children: app.translator.trans('flagrow-analytics.admin.page.nav.title'),
+                    description: app.translator.trans('flagrow-analytics.admin.page.nav.description')
+                }));
+            });
+        }
+    });
+
     return {
         setters: [function (_flarumExtend) {
             extend = _flarumExtend.extend;
         }, function (_flarumComponentsAdminNav) {
-            AdminNav = _flarumComponentsAdminNav['default'];
+            AdminNav = _flarumComponentsAdminNav.default;
         }, function (_flarumComponentsAdminLinkButton) {
-            AdminLinkButton = _flarumComponentsAdminLinkButton['default'];
+            AdminLinkButton = _flarumComponentsAdminLinkButton.default;
         }, function (_flagrowAnalyticsComponentsAnalyticsPage) {
-            AnalyticsPage = _flagrowAnalyticsComponentsAnalyticsPage['default'];
+            AnalyticsPage = _flagrowAnalyticsComponentsAnalyticsPage.default;
         }],
-        execute: function () {
-            _export('default', function () {
-                // add the Analytics tab to the admin navigation menu if piwik is enabled
-                if (m.prop(app.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()) {
-
-                    app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
-
-                    extend(AdminNav.prototype, 'items', function (items) {
-                        items.add('analytics', AdminLinkButton.component({
-                            href: app.route('analytics'),
-                            icon: 'line-chart',
-                            children: app.translator.trans('flagrow-analytics.admin.page.nav.title'),
-                            description: app.translator.trans('flagrow-analytics.admin.page.nav.description')
-                        }));
-                    });
-                }
-            });
-        }
+        execute: function () {}
     };
 });;
-System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component'], function (_export) {
-    'use strict';
+'use strict';
 
+System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component'], function (_export, _context) {
     var Component, AnalyticsPage;
     return {
         setters: [function (_flarumComponent) {
-            Component = _flarumComponent['default'];
+            Component = _flarumComponent.default;
         }],
         execute: function () {
-            AnalyticsPage = (function (_Component) {
+            AnalyticsPage = function (_Component) {
                 babelHelpers.inherits(AnalyticsPage, _Component);
 
                 function AnalyticsPage() {
                     babelHelpers.classCallCheck(this, AnalyticsPage);
-                    babelHelpers.get(Object.getPrototypeOf(AnalyticsPage.prototype), 'constructor', this).apply(this, arguments);
+                    return babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(AnalyticsPage).apply(this, arguments));
                 }
 
                 babelHelpers.createClass(AnalyticsPage, [{
@@ -64,27 +65,27 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
                     }
                 }]);
                 return AnalyticsPage;
-            })(Component);
+            }(Component);
 
             _export('default', AnalyticsPage);
         }
     };
 });;
-System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export) {
-    'use strict';
+'use strict';
 
+System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export, _context) {
     var SettingsModal, AnalyticsSettingsModal;
     return {
         setters: [function (_flarumComponentsSettingsModal) {
-            SettingsModal = _flarumComponentsSettingsModal['default'];
+            SettingsModal = _flarumComponentsSettingsModal.default;
         }],
         execute: function () {
-            AnalyticsSettingsModal = (function (_SettingsModal) {
+            AnalyticsSettingsModal = function (_SettingsModal) {
                 babelHelpers.inherits(AnalyticsSettingsModal, _SettingsModal);
 
                 function AnalyticsSettingsModal() {
                     babelHelpers.classCallCheck(this, AnalyticsSettingsModal);
-                    babelHelpers.get(Object.getPrototypeOf(AnalyticsSettingsModal.prototype), 'constructor', this).apply(this, arguments);
+                    return babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(AnalyticsSettingsModal).apply(this, arguments));
                 }
 
                 babelHelpers.createClass(AnalyticsSettingsModal, [{
@@ -100,7 +101,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                 }, {
                     key: 'form',
                     value: function form() {
-                        var _this = this;
+                        var _this2 = this;
 
                         // the fields we need to save
                         this.fields = ['googleTrackingCode', 'piwikUrl', 'piwikSiteId', 'piwikAliasUrl', 'piwikAuthToken'];
@@ -116,52 +117,52 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
 
                         // the input fields
                         this.fields.forEach(function (key) {
-                            return _this.inputs[key] = m('input', {
+                            return _this2.inputs[key] = m('input', {
                                 id: key,
                                 className: 'FormControl',
-                                bidi: _this.setting(_this.settingsPrefix + '.' + key),
+                                bidi: _this2.setting(_this2.settingsPrefix + '.' + key),
                                 placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key)
                             });
                         });
 
                         // the checkboxes
                         this.checkboxes.forEach(function (key) {
-                            return _this.checkbox[key] = m('input', {
+                            return _this2.checkbox[key] = m('input', {
                                 id: key,
                                 type: 'checkbox',
                                 style: 'float:left; margin-right:3px; margin-top: 2px;',
-                                bidi: _this.setting(_this.settingsPrefix + '.' + key)
+                                bidi: _this2.setting(_this2.settingsPrefix + '.' + key)
                             });
                         });
 
                         // the labels
                         this.checkboxes.forEach(function (key) {
-                            return _this.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)]);
+                            return _this2.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)]);
                         });
 
                         return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', { className: 'piwik', style: { display: $('#statusPiwik').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikUrl'], m('br'), this.inputs['piwikSiteId'], this.inputs['piwikAuthToken'], m('br'), this.checkbox['piwikTrackSubdomain'], this.checkbox['label.piwikTrackSubdomain'], m('br'), this.checkbox['piwikPrependDomain'], this.checkbox['label.piwikPrependDomain'], m('br'), this.checkbox['piwikHideAliasUrl'], this.checkbox['label.piwikHideAliasUrl'], m('div', { style: { display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikAliasUrl']])])])];
                     }
                 }]);
                 return AnalyticsSettingsModal;
-            })(SettingsModal);
+            }(SettingsModal);
 
             _export('default', AnalyticsSettingsModal);
         }
     };
 });;
-System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flagrow/analytics/components/AnalyticsSettingsModal', 'flagrow/analytics/addAnalyticsPage'], function (_export) {
-  'use strict';
+'use strict';
 
+System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flagrow/analytics/components/AnalyticsSettingsModal', 'flagrow/analytics/addAnalyticsPage'], function (_export, _context) {
   var extend, app, AnalyticsSettingsModal, addAnalyticsPage;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
     }, function (_flarumApp) {
-      app = _flarumApp['default'];
+      app = _flarumApp.default;
     }, function (_flagrowAnalyticsComponentsAnalyticsSettingsModal) {
-      AnalyticsSettingsModal = _flagrowAnalyticsComponentsAnalyticsSettingsModal['default'];
+      AnalyticsSettingsModal = _flagrowAnalyticsComponentsAnalyticsSettingsModal.default;
     }, function (_flagrowAnalyticsAddAnalyticsPage) {
-      addAnalyticsPage = _flagrowAnalyticsAddAnalyticsPage['default'];
+      addAnalyticsPage = _flagrowAnalyticsAddAnalyticsPage.default;
     }],
     execute: function () {
 

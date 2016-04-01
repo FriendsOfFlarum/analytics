@@ -1,14 +1,14 @@
-System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flarum/components/Page'], function (_export) {
-    'use strict';
+'use strict';
 
+System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flarum/components/Page'], function (_export, _context) {
     var extend, app, Page;
     return {
         setters: [function (_flarumExtend) {
             extend = _flarumExtend.extend;
         }, function (_flarumApp) {
-            app = _flarumApp['default'];
+            app = _flarumApp.default;
         }, function (_flarumComponentsPage) {
-            Page = _flarumComponentsPage['default'];
+            Page = _flarumComponentsPage.default;
         }],
         execute: function () {
 
