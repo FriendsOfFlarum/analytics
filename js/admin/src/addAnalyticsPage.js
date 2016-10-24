@@ -6,10 +6,10 @@ import AnalyticsPage from 'flagrow/analytics/components/AnalyticsPage';
 
 export default function() {
     // add the Analytics tab to the admin navigation menu if piwik is enabled
-    if(m.prop(app.settings['flagrow.analytics.statusPiwik'])() &&
-        m.prop(app.settings['flagrow.analytics.piwikUrl'])() &&
-        m.prop(app.settings['flagrow.analytics.piwikSiteId'])() &&
-        m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()){
+    if (m.prop(app.data.settings['flagrow.analytics.statusPiwik'])() &&
+        m.prop(app.data.settings['flagrow.analytics.piwikUrl'])() &&
+        m.prop(app.data.settings['flagrow.analytics.piwikSiteId'])() &&
+        m.prop(app.data.settings['flagrow.analytics.piwikAuthToken'])()) {
 
         app.routes['analytics'] = {path: '/analytics', component: AnalyticsPage.component()};
 

@@ -1,11 +1,13 @@
 'use strict';
 
 System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/components/AdminNav', 'flarum/components/AdminLinkButton', 'flagrow/analytics/components/AnalyticsPage'], function (_export, _context) {
+    "use strict";
+
     var extend, AdminNav, AdminLinkButton, AnalyticsPage;
 
     _export('default', function () {
         // add the Analytics tab to the admin navigation menu if piwik is enabled
-        if (m.prop(app.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.settings['flagrow.analytics.piwikAuthToken'])()) {
+        if (m.prop(app.data.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.data.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.data.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.data.settings['flagrow.analytics.piwikAuthToken'])()) {
 
             app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
 
@@ -36,6 +38,8 @@ System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/
 'use strict';
 
 System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component'], function (_export, _context) {
+    "use strict";
+
     var Component, AnalyticsPage;
     return {
         setters: [function (_flarumComponent) {
@@ -47,16 +51,16 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
 
                 function AnalyticsPage() {
                     babelHelpers.classCallCheck(this, AnalyticsPage);
-                    return babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(AnalyticsPage).apply(this, arguments));
+                    return babelHelpers.possibleConstructorReturn(this, (AnalyticsPage.__proto__ || Object.getPrototypeOf(AnalyticsPage)).apply(this, arguments));
                 }
 
                 babelHelpers.createClass(AnalyticsPage, [{
                     key: 'view',
                     value: function view() {
                         //Call the piwik application
-                        this.url = '//' + m.prop(app.settings['flagrow.analytics.piwikUrl'])() + '/index.php';
-                        this.url += '?idSite=' + m.prop(app.settings['flagrow.analytics.piwikSiteId'])();
-                        this.url += '&token_auth=' + m.prop(app.settings['flagrow.analytics.piwikAuthToken'])();
+                        this.url = '//' + m.prop(app.data.settings['flagrow.analytics.piwikUrl'])() + '/index.php';
+                        this.url += '?idSite=' + m.prop(app.data.settings['flagrow.analytics.piwikSiteId'])();
+                        this.url += '&token_auth=' + m.prop(app.data.settings['flagrow.analytics.piwikAuthToken'])();
                         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
                         return [m('div', { className: 'analyticsPage' }, [m('div', { className: 'piwik' }, [m('label', ['Piwik']), m('iframe', {
                             frameborder: '0',
@@ -74,6 +78,8 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
 'use strict';
 
 System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export, _context) {
+    "use strict";
+
     var SettingsModal, AnalyticsSettingsModal;
     return {
         setters: [function (_flarumComponentsSettingsModal) {
@@ -85,7 +91,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
 
                 function AnalyticsSettingsModal() {
                     babelHelpers.classCallCheck(this, AnalyticsSettingsModal);
-                    return babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(AnalyticsSettingsModal).apply(this, arguments));
+                    return babelHelpers.possibleConstructorReturn(this, (AnalyticsSettingsModal.__proto__ || Object.getPrototypeOf(AnalyticsSettingsModal)).apply(this, arguments));
                 }
 
                 babelHelpers.createClass(AnalyticsSettingsModal, [{
@@ -153,6 +159,8 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
 'use strict';
 
 System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flagrow/analytics/components/AnalyticsSettingsModal', 'flagrow/analytics/addAnalyticsPage'], function (_export, _context) {
+    "use strict";
+
   var extend, app, AnalyticsSettingsModal, addAnalyticsPage;
   return {
     setters: [function (_flarumExtend) {
