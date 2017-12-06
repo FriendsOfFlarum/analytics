@@ -1,4 +1,5 @@
 import SettingsModal from 'flarum/components/SettingsModal';
+import Select from 'flarum/components/Select';
 
 export default class AnalyticsSettingsModal extends SettingsModal {
 
@@ -59,6 +60,12 @@ export default class AnalyticsSettingsModal extends SettingsModal {
             ])
         );
 
+        const piwikTrackAccountsSetting = this.setting(this.settingsPrefix + '.piwikTrackAccounts');
+
+        if (!piwikTrackAccountsSetting()) {
+            piwikTrackAccountsSetting('none');
+        }
+
         return [
             m('div', {className: 'Form-group'}, [
                 m('label', [
@@ -100,6 +107,15 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                     }, [
                         this.inputs['piwikAliasUrl'],
                     ]),
+                    Select.component({
+                        options: {
+                            none: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.none'),
+                            username: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.username'),
+                            email: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.email'),
+                        },
+                        value: piwikTrackAccountsSetting(),
+                        onchange: piwikTrackAccountsSetting,
+                    }),
                 ]),
             ]),
         ];
