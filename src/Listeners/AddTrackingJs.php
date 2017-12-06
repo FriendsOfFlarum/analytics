@@ -2,6 +2,7 @@
 
 namespace Flagrow\Analytics\Listeners;
 
+use Flagrow\Analytics\Piwik\PaqPushList;
 use Flarum\Event\ConfigureWebApp;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Settings\SettingsRepositoryInterface;
@@ -61,31 +62,24 @@ class AddTrackingJs
 
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.html'));
 
-                $options = [];
+                $options = new PaqPushList();
 
-                $options[] = "_paq.push(['setSiteId', " . $settings['piwikSiteId'] . "]);";
+                $options->addPush('setSiteId', $settings['piwikSiteId']);
 
                 if ($settings['piwikTrackSubdomain']) {
-                    $options[] = "_paq.push(['setCookieDomain', '*." . $_SERVER['HTTP_HOST'] . "']);";
+                    $options->addPush('setCookieDomain', '*.' . $_SERVER['HTTP_HOST']);
                 }
 
                 if ($settings['piwikPrependDomain']) {
-                    $options[] = "_paq.push(['setDocumentTitle', document.domain + '/' + document.title]);";
+                    $options->addPush('setDocumentTitle', $options->raw('document.domain + \'/\' + document.title'));
                 }
 
                 if ($settings['piwikHideAliasUrl'] && $settings['piwikAliasUrl']) {
-                    $options[] = "_paq.push(['setDomains', ['*." . $settings['piwikAliasUrl'] . "']]);";
-                }
-
-                // Sanity check, add empty string or the combined array.
-                if (count($options)) {
-                    $options = implode("\n    ", $options);
-                } else {
-                    $options = '';
+                    $options->addPush('setDomains', '*.' . $settings['piwikAliasUrl']);
                 }
 
                 // Replace the ##piwik_options## has with the settings or an empty string.
-                $js = str_replace('##piwik_options##', $options, $rawJs);
+                $js = str_replace('##piwik_options##', $options->asJavascript(), $rawJs);
 
                 $js = str_replace("##piwik_url##", $piwikUrl, $js);
                 $event->view->addHeadString($js);
