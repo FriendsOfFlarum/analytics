@@ -3,7 +3,7 @@
 namespace Flagrow\Analytics\Listeners;
 
 use DirectoryIterator;
-use Flarum\Event\ConfigureClientView;
+use Flarum\Event\ConfigureWebApp;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Event\ConfigureLocales;
 
@@ -11,11 +11,11 @@ class AddClientAssets
 {
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(ConfigureClientView::class, [$this, 'addAssets']);
+        $events->listen(ConfigureWebApp::class, [$this, 'addAssets']);
         $events->listen(ConfigureLocales::class, [$this, 'addLocales']);
     }
 
-    public function addAssets(ConfigureClientView $event)
+    public function addAssets(ConfigureWebApp $event)
     {
         if($event->isAdmin()) {
             $event->addAssets([
