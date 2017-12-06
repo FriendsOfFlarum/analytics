@@ -2,7 +2,7 @@
 
 namespace Flagrow\Analytics\Listeners;
 
-use Flarum\Event\ConfigureClientView;
+use Flarum\Event\ConfigureWebApp;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Support\Str;
@@ -29,13 +29,13 @@ class AddTrackingJs
      */
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(ConfigureClientView::class, [$this, 'addAssets']);
+        $events->listen(ConfigureWebApp::class, [$this, 'addAssets']);
     }
 
     /**
-     * @param ConfigureClientView $event
+     * @param ConfigureWebApp $event
      */
-    public function addAssets(ConfigureClientView $event)
+    public function addAssets(ConfigureWebApp $event)
     {
         if ($event->isForum()) {
             // Add google analytics if tracking UA has been configured.
