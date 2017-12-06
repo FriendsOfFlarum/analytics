@@ -39,7 +39,7 @@ class AddTrackingJs
         if ($event->isForum()) {
             // Add google analytics if tracking UA has been configured.
             if ($this->settings->get('flagrow.analytics.statusGoogle') && $this->settings->get('flagrow.analytics.googleTrackingCode')) {
-                $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/google-analytics.js'));
+                $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/google-analytics.html'));
                 $js = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.googleTrackingCode'), $rawJs);
                 $event->view->addHeadString($js);
             }
@@ -60,7 +60,7 @@ class AddTrackingJs
                     'piwikPrependDomain' => $this->settings->get('flagrow.analytics.piwikPrependDomain'),
                 ];
 
-                $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.js'));
+                $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.html'));
 
                 $options = [];
 
