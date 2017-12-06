@@ -1,6 +1,8 @@
 'use strict';
 
 System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flarum/components/Page'], function (_export, _context) {
+    "use strict";
+
     var extend, app, Page;
     return {
         setters: [function (_flarumExtend) {

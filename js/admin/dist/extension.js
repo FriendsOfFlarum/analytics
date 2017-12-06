@@ -159,7 +159,7 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
 'use strict';
 
 System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flagrow/analytics/components/AnalyticsSettingsModal', 'flagrow/analytics/addAnalyticsPage'], function (_export, _context) {
-    "use strict";
+  "use strict";
 
   var extend, app, AnalyticsSettingsModal, addAnalyticsPage;
   return {
