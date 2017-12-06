@@ -1,4 +1,6 @@
-<?php namespace Flagrow\Analytics\Listeners;
+<?php
+
+namespace Flagrow\Analytics\Listeners;
 
 use DirectoryIterator;
 use Flarum\Event\ConfigureClientView;

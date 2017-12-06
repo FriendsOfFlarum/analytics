@@ -1,4 +1,6 @@
-<?php namespace Flagrow\Analytics\Listeners;
+<?php
+
+namespace Flagrow\Analytics\Listeners;
 
 use Flarum\Event\ConfigureClientView;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -7,10 +9,9 @@ use Flarum\Settings\SettingsRepositoryInterface;
 class AddTrackingJs
 {
     /**
-     * @var SettingsRepository
+     * @var SettingsRepositoryInterface
      */
     protected $settings;
-
 
     /**
      * AddTrackingJs constructor.
@@ -39,25 +40,25 @@ class AddTrackingJs
             // Add google analytics if tracking UA has been configured.
             if ($this->settings->get('flagrow.analytics.statusGoogle') && $this->settings->get('flagrow.analytics.googleTrackingCode')) {
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/google-analytics.js'));
-                $js    = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.googleTrackingCode'), $rawJs);
+                $js = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.googleTrackingCode'), $rawJs);
                 $event->view->addHeadString($js);
             }
 
             // get the validation data
-            $settings = array (
+            $settings = [
                 'statusPiwik' => $this->settings->get('flagrow.analytics.statusPiwik'),
-                'piwikUrl'    => $this->settings->get('flagrow.analytics.piwikUrl'),
-                'piwikSiteId' => $this->settings->get('flagrow.analytics.piwikSiteId')
-            );
+                'piwikUrl' => $this->settings->get('flagrow.analytics.piwikUrl'),
+                'piwikSiteId' => $this->settings->get('flagrow.analytics.piwikSiteId'),
+            ];
             // Add piwik specific tracking code if configured in admin.
             if ($settings['statusPiwik'] && $settings['piwikUrl'] && $settings['piwikSiteId']) {
                 // get all the data
-                $settings += array (
-                    'piwikHideAliasUrl'   => $this->settings->get('flagrow.analytics.piwikHideAliasUrl'),
-                    'piwikAliasUrl'       => $this->settings->get('flagrow.analytics.piwikAliasUrl'),
+                $settings += [
+                    'piwikHideAliasUrl' => $this->settings->get('flagrow.analytics.piwikHideAliasUrl'),
+                    'piwikAliasUrl' => $this->settings->get('flagrow.analytics.piwikAliasUrl'),
                     'piwikTrackSubdomain' => $this->settings->get('flagrow.analytics.piwikTrackSubdomain'),
-                    'piwikPrependDomain'  => $this->settings->get('flagrow.analytics.piwikPrependDomain')
-                );
+                    'piwikPrependDomain' => $this->settings->get('flagrow.analytics.piwikPrependDomain'),
+                ];
 
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.js'));
 

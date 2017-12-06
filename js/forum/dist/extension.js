@@ -16,10 +16,10 @@ System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flaru
 
             app.initializers.add('flagrow-analytics', function (app) {
                 extend(Page.prototype, 'init', function (vdom) {
-                    if (typeof ga != 'undefined') {
+                    if (typeof ga !== 'undefined') {
                         ga('send', 'pageview', { page: m.route() });
                     }
-                    if (typeof _paq != 'undefined') {
+                    if (typeof _paq !== 'undefined') {
                         _paq.push(['trackPageView']);
                     }
                 });

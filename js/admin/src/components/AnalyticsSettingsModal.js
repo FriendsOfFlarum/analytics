@@ -17,7 +17,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
             'piwikUrl',
             'piwikSiteId',
             'piwikAliasUrl',
-            'piwikAuthToken'
+            'piwikAuthToken',
         ];
 
         // the checkboxes we need to save.
@@ -26,7 +26,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
             'statusPiwik',
             'piwikTrackSubdomain',
             'piwikPrependDomain',
-            'piwikHideAliasUrl'
+            'piwikHideAliasUrl',
         ];
 
         this.inputs = [];
@@ -40,7 +40,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                 id: key,
                 className: 'FormControl',
                 bidi: this.setting(this.settingsPrefix + '.' + key),
-                placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key)
+                placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key),
             })
         );
 
@@ -49,13 +49,13 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                 id: key,
                 type: 'checkbox',
                 style: 'float:left; margin-right:3px; margin-top: 2px;',
-                bidi: this.setting(this.settingsPrefix + '.' + key)
+                bidi: this.setting(this.settingsPrefix + '.' + key),
             })
         );
 
         // the labels
         this.checkboxes.forEach(key => this.checkbox['label.' + key] = m('div', [
-                app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)
+                app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key),
             ])
         );
 
@@ -72,9 +72,14 @@ export default class AnalyticsSettingsModal extends SettingsModal {
 
                 m('label', [
                     'Piwik ',
-                    this.checkbox['statusPiwik']
+                    this.checkbox['statusPiwik'],
                 ]),
-                m('div', {className: 'piwik', style: {display: ($('#statusPiwik').prop('checked') === true ? "block" : "none")}}, [
+                m('div', {
+                    className: 'piwik',
+                    style: {
+                        display: ($('#statusPiwik').prop('checked') === true ? "block" : "none"),
+                    },
+                }, [
                     this.inputs['piwikUrl'],
                     m('br'),
                     this.inputs['piwikSiteId'],
@@ -88,11 +93,15 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                     m('br'),
                     this.checkbox['piwikHideAliasUrl'],
                     this.checkbox['label.piwikHideAliasUrl'],
-                    m('div', {style: {display: ($('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none")}}, [
-                        this.inputs['piwikAliasUrl']
+                    m('div', {
+                        style: {
+                            display: ($('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none"),
+                        },
+                    }, [
+                        this.inputs['piwikAliasUrl'],
                     ]),
-                ])
-            ])
+                ]),
+            ]),
         ];
     }
 }

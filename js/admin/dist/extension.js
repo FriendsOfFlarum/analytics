@@ -9,7 +9,10 @@ System.register('flagrow/analytics/addAnalyticsPage', ['flarum/extend', 'flarum/
         // add the Analytics tab to the admin navigation menu if piwik is enabled
         if (m.prop(app.data.settings['flagrow.analytics.statusPiwik'])() && m.prop(app.data.settings['flagrow.analytics.piwikUrl'])() && m.prop(app.data.settings['flagrow.analytics.piwikSiteId'])() && m.prop(app.data.settings['flagrow.analytics.piwikAuthToken'])()) {
 
-            app.routes['analytics'] = { path: '/analytics', component: AnalyticsPage.component() };
+            app.routes['analytics'] = {
+                path: '/analytics',
+                component: AnalyticsPage.component()
+            };
 
             extend(AdminNav.prototype, 'items', function (items) {
                 items.add('analytics', AdminLinkButton.component({
@@ -62,6 +65,7 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
                         this.url += '?idSite=' + m.prop(app.data.settings['flagrow.analytics.piwikSiteId'])();
                         this.url += '&token_auth=' + m.prop(app.data.settings['flagrow.analytics.piwikAuthToken'])();
                         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
+
                         return [m('div', { className: 'analyticsPage' }, [m('div', { className: 'piwik' }, [m('label', ['Piwik']), m('iframe', {
                             frameborder: '0',
                             src: this.url
@@ -146,7 +150,16 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                             return _this2.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)]);
                         });
 
-                        return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', { className: 'piwik', style: { display: $('#statusPiwik').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikUrl'], m('br'), this.inputs['piwikSiteId'], this.inputs['piwikAuthToken'], m('br'), this.checkbox['piwikTrackSubdomain'], this.checkbox['label.piwikTrackSubdomain'], m('br'), this.checkbox['piwikPrependDomain'], this.checkbox['label.piwikPrependDomain'], m('br'), this.checkbox['piwikHideAliasUrl'], this.checkbox['label.piwikHideAliasUrl'], m('div', { style: { display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none" } }, [this.inputs['piwikAliasUrl']])])])];
+                        return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', {
+                            className: 'piwik',
+                            style: {
+                                display: $('#statusPiwik').prop('checked') === true ? "block" : "none"
+                            }
+                        }, [this.inputs['piwikUrl'], m('br'), this.inputs['piwikSiteId'], this.inputs['piwikAuthToken'], m('br'), this.checkbox['piwikTrackSubdomain'], this.checkbox['label.piwikTrackSubdomain'], m('br'), this.checkbox['piwikPrependDomain'], this.checkbox['label.piwikPrependDomain'], m('br'), this.checkbox['piwikHideAliasUrl'], this.checkbox['label.piwikHideAliasUrl'], m('div', {
+                            style: {
+                                display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none"
+                            }
+                        }, [this.inputs['piwikAliasUrl']])])])];
                     }
                 }]);
                 return AnalyticsSettingsModal;
@@ -159,27 +172,27 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
 'use strict';
 
 System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flagrow/analytics/components/AnalyticsSettingsModal', 'flagrow/analytics/addAnalyticsPage'], function (_export, _context) {
-  "use strict";
+    "use strict";
 
-  var extend, app, AnalyticsSettingsModal, addAnalyticsPage;
-  return {
-    setters: [function (_flarumExtend) {
-      extend = _flarumExtend.extend;
-    }, function (_flarumApp) {
-      app = _flarumApp.default;
-    }, function (_flagrowAnalyticsComponentsAnalyticsSettingsModal) {
-      AnalyticsSettingsModal = _flagrowAnalyticsComponentsAnalyticsSettingsModal.default;
-    }, function (_flagrowAnalyticsAddAnalyticsPage) {
-      addAnalyticsPage = _flagrowAnalyticsAddAnalyticsPage.default;
-    }],
-    execute: function () {
+    var extend, app, AnalyticsSettingsModal, addAnalyticsPage;
+    return {
+        setters: [function (_flarumExtend) {
+            extend = _flarumExtend.extend;
+        }, function (_flarumApp) {
+            app = _flarumApp.default;
+        }, function (_flagrowAnalyticsComponentsAnalyticsSettingsModal) {
+            AnalyticsSettingsModal = _flagrowAnalyticsComponentsAnalyticsSettingsModal.default;
+        }, function (_flagrowAnalyticsAddAnalyticsPage) {
+            addAnalyticsPage = _flagrowAnalyticsAddAnalyticsPage.default;
+        }],
+        execute: function () {
 
-      app.initializers.add('flagrow-analytics', function (app) {
-        app.extensionSettings['flagrow-analytics'] = function () {
-          return app.modal.show(new AnalyticsSettingsModal());
-        };
-        addAnalyticsPage();
-      });
-    }
-  };
+            app.initializers.add('flagrow-analytics', function (app) {
+                app.extensionSettings['flagrow-analytics'] = function () {
+                    return app.modal.show(new AnalyticsSettingsModal());
+                };
+                addAnalyticsPage();
+            });
+        }
+    };
 });
