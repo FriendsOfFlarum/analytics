@@ -9,32 +9,18 @@ use Illuminate\Support\Str;
 
 class AddTrackingJs
 {
-    /**
-     * @var SettingsRepositoryInterface
-     */
     protected $settings;
 
-    /**
-     * AddTrackingJs constructor.
-     *
-     * @param SettingsRepositoryInterface $settings
-     */
     public function __construct(SettingsRepositoryInterface $settings)
     {
         $this->settings = $settings;
     }
 
-    /**
-     * @param Dispatcher $events
-     */
     public function subscribe(Dispatcher $events)
     {
         $events->listen(ConfigureWebApp::class, [$this, 'addAssets']);
     }
 
-    /**
-     * @param ConfigureWebApp $event
-     */
     public function addAssets(ConfigureWebApp $event)
     {
         if ($event->isForum()) {
