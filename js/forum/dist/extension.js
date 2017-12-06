@@ -20,6 +20,7 @@ System.register('flagrow/analytics/main', ['flarum/extend', 'flarum/app', 'flaru
                         ga('send', 'pageview', { page: m.route() });
                     }
                     if (typeof _paq !== 'undefined') {
+                        _paq.push(['setCustomUrl', m.route()]);
                         _paq.push(['trackPageView']);
                     }
                 });
