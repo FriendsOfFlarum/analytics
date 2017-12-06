@@ -5,6 +5,7 @@ namespace Flagrow\Analytics\Listeners;
 use Flarum\Event\ConfigureClientView;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Illuminate\Support\Str;
 
 class AddTrackingJs
 {
@@ -52,6 +53,18 @@ class AddTrackingJs
             ];
             // Add piwik specific tracking code if configured in admin.
             if ($settings['statusPiwik'] && $settings['piwikUrl'] && $settings['piwikSiteId']) {
+                $piwikUrl = $settings['piwikUrl'];
+
+                // Use protocol-relative url if no protocol is defined
+                if (!Str::startsWith($piwikUrl, ['http://', 'https://', '//'])) {
+                    $piwikUrl = '//' . $piwikUrl;
+                }
+
+                // Add trailing slash if not already present
+                if (!Str::endsWith($piwikUrl, '/')) {
+                    $piwikUrl .= '/';
+                }
+
                 // get all the data
                 $settings += [
                     'piwikHideAliasUrl' => $this->settings->get('flagrow.analytics.piwikHideAliasUrl'),
@@ -88,7 +101,7 @@ class AddTrackingJs
                 // Replace the ##piwik_options## has with the settings or an empty string.
                 $js = str_replace('##piwik_options##', $options, $rawJs);
 
-                $js = str_replace("##piwik_url##", $settings['piwikUrl'], $js);
+                $js = str_replace("##piwik_url##", $piwikUrl, $js);
                 $event->view->addHeadString($js);
             }
         }
