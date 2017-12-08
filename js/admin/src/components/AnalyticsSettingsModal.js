@@ -1,5 +1,8 @@
 import SettingsModal from 'flarum/components/SettingsModal';
 import Select from 'flarum/components/Select';
+import Switch from 'flarum/components/Switch';
+
+const settingsPrefix = 'flagrow.analytics.';
 
 export default class AnalyticsSettingsModal extends SettingsModal {
 
@@ -12,101 +15,83 @@ export default class AnalyticsSettingsModal extends SettingsModal {
     }
 
     form() {
-        // the fields we need to save
-        this.fields = [
-            'googleTrackingCode',
-            'piwikUrl',
-            'piwikSiteId',
-            'piwikAliasUrl',
-            'piwikAuthToken',
-        ];
-
-        // the checkboxes we need to save.
-        this.checkboxes = [
-            'statusGoogle',
-            'statusPiwik',
-            'piwikTrackSubdomain',
-            'piwikPrependDomain',
-            'piwikHideAliasUrl',
-        ];
-
-        this.inputs = [];
-        this.checkbox = [];
-
-        // our package prefix (to be added to every field and checkbox in the setting table)
-        this.settingsPrefix = 'flagrow.analytics';
-
-        // the input fields
-        this.fields.forEach(key => this.inputs[key] = m('input', {
-                id: key,
-                className: 'FormControl',
-                bidi: this.setting(this.settingsPrefix + '.' + key),
-                placeholder: app.translator.trans('flagrow-analytics.admin.popup.field.' + key),
-            })
-        );
-
-        // the checkboxes
-        this.checkboxes.forEach(key => this.checkbox[key] = m('input', {
-                id: key,
-                type: 'checkbox',
-                style: 'float:left; margin-right:3px; margin-top: 2px;',
-                bidi: this.setting(this.settingsPrefix + '.' + key),
-            })
-        );
-
-        // the labels
-        this.checkboxes.forEach(key => this.checkbox['label.' + key] = m('div', [
-                app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key),
-            ])
-        );
-
-        const piwikTrackAccountsSetting = this.setting(this.settingsPrefix + '.piwikTrackAccounts');
+        const piwikTrackAccountsSetting = this.setting(settingsPrefix + 'piwikTrackAccounts');
 
         if (!piwikTrackAccountsSetting()) {
             piwikTrackAccountsSetting('none');
         }
 
         return [
-            m('div', {className: 'Form-group'}, [
-                m('label', [
-                    'Google Analytics ',
-                    this.checkbox['statusGoogle'],
+            m('h3', app.translator.trans('flagrow-analytics.admin.popup.section.googleAnalytics')),
+            m('.Form-group', [
+                m('label', Switch.component({
+                    state: this.setting(settingsPrefix + 'statusGoogle')() > 0,
+                    onchange: this.setting(settingsPrefix + 'statusGoogle'),
+                    children: app.translator.trans('flagrow-analytics.admin.popup.field.statusGoogle'),
+                })),
+            ]),
+            (this.setting(settingsPrefix + 'statusGoogle')() > 0 ? [
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.googleTrackingCode')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'googleTrackingCode'),
+                        placeholder: 'UA-XXXXXXXX-X',
+                    }),
                 ]),
-                m('div', {style: {display: ($('#statusGoogle').prop('checked') === true ? "block" : "none")}}, [
-                    this.inputs['googleTrackingCode'],
+            ] : null),
+            m('h3', app.translator.trans('flagrow-analytics.admin.popup.section.piwik')),
+            m('.Form-group', [
+                m('label', Switch.component({
+                    state: this.setting(settingsPrefix + 'statusPiwik')() > 0,
+                    onchange: this.setting(settingsPrefix + 'statusPiwik'),
+                    children: app.translator.trans('flagrow-analytics.admin.popup.field.statusPiwik'),
+                })),
+            ]),
+            (this.setting(settingsPrefix + 'statusPiwik')() > 0 ? [
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.piwikUrl')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'piwikUrl'),
+                        placeholder: 'piwik.example.com',
+                    }),
                 ]),
-                m('br'),
-
-                m('label', [
-                    'Piwik ',
-                    this.checkbox['statusPiwik'],
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.piwikSiteId')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'piwikSiteId'),
+                    }),
                 ]),
-                m('div', {
-                    className: 'piwik',
-                    style: {
-                        display: ($('#statusPiwik').prop('checked') === true ? "block" : "none"),
-                    },
-                }, [
-                    this.inputs['piwikUrl'],
-                    m('br'),
-                    this.inputs['piwikSiteId'],
-                    this.inputs['piwikAuthToken'],
-                    m('br'),
-                    this.checkbox['piwikTrackSubdomain'],
-                    this.checkbox['label.piwikTrackSubdomain'],
-                    m('br'),
-                    this.checkbox['piwikPrependDomain'],
-                    this.checkbox['label.piwikPrependDomain'],
-                    m('br'),
-                    this.checkbox['piwikHideAliasUrl'],
-                    this.checkbox['label.piwikHideAliasUrl'],
-                    m('div', {
-                        style: {
-                            display: ($('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none"),
-                        },
-                    }, [
-                        this.inputs['piwikAliasUrl'],
+                m('.Form-group', [
+                    m('label', Switch.component({
+                        state: this.setting(settingsPrefix + 'piwikTrackSubdomain')() > 0,
+                        onchange: this.setting(settingsPrefix + 'piwikTrackSubdomain'),
+                        children: app.translator.trans('flagrow-analytics.admin.popup.field.piwikTrackSubdomain'),
+                    })),
+                ]),
+                m('.Form-group', [
+                    m('label', Switch.component({
+                        state: this.setting(settingsPrefix + 'piwikPrependDomain')() > 0,
+                        onchange: this.setting(settingsPrefix + 'piwikPrependDomain'),
+                        children: app.translator.trans('flagrow-analytics.admin.popup.field.piwikPrependDomain'),
+                    })),
+                ]),
+                m('.Form-group', [
+                    m('label', Switch.component({
+                        state: this.setting(settingsPrefix + 'piwikHideAliasUrl')() > 0,
+                        onchange: this.setting(settingsPrefix + 'piwikHideAliasUrl'),
+                        children: app.translator.trans('flagrow-analytics.admin.popup.field.piwikHideAliasUrl'),
+                    })),
+                ]),
+                (this.setting(settingsPrefix + 'piwikHideAliasUrl')() > 0 ? [
+                    m('.Form-group', [
+                        m('label', app.translator.trans('flagrow-analytics.admin.popup.field.piwikAliasUrl')),
+                        m('input.FormControl', {
+                            bidi: this.setting(settingsPrefix + 'piwikAliasUrl'),
+                        }),
                     ]),
+                ] : null),
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.piwikTrackAccounts')),
                     Select.component({
                         options: {
                             none: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.none'),
@@ -117,7 +102,15 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                         onchange: piwikTrackAccountsSetting,
                     }),
                 ]),
-            ]),
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.piwikAuthToken')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'piwikAuthToken'),
+                        placeholder: '00112233445566778899aabbccddeeff',
+                    }),
+                    m('.helpText', app.translator.trans('flagrow-analytics.admin.popup.placeholder.piwikAuthToken')),
+                ]),
+            ] : null),
         ];
     }
 }
