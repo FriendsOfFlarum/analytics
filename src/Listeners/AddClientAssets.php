@@ -19,7 +19,7 @@ class AddClientAssets
     {
         if ($event->isAdmin()) {
             $event->addAssets([
-                __DIR__ . '/../../less/admin/analyticsPage.less',
+                __DIR__ . '/../../less/admin.less',
                 __DIR__ . '/../../js/admin/dist/extension.js',
             ]);
 
