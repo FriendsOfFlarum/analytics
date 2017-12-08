@@ -22,6 +22,11 @@ flagrow-analytics:
           piwikPrependDomain: Prepend the site domain to the page title when tracking
           piwikHideAliasUrl: In the "Outlinks" report, hide clicks to known alias URLs
 
+      trackAccounts:
+        none: Do not track individual accounts
+        username: Track by username
+        email: Track by email
+
     page:
       nav:
         title: Analytics

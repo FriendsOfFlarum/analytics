@@ -4,6 +4,7 @@ namespace Flagrow\Analytics\Listeners;
 
 use Flagrow\Analytics\Piwik\PaqPushList;
 use Flarum\Event\ConfigureWebApp;
+use Flarum\Core\Guest;
 use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Support\Str;
@@ -58,6 +59,7 @@ class AddTrackingJs
                     'piwikAliasUrl' => $this->settings->get('flagrow.analytics.piwikAliasUrl'),
                     'piwikTrackSubdomain' => $this->settings->get('flagrow.analytics.piwikTrackSubdomain'),
                     'piwikPrependDomain' => $this->settings->get('flagrow.analytics.piwikPrependDomain'),
+                    'piwikTrackAccounts' => $this->settings->get('flagrow.analytics.piwikTrackAccounts'),
                 ];
 
                 $rawJs = file_get_contents(realpath(__DIR__ . '/../../assets/js/piwik-analytics.html'));
@@ -76,6 +78,16 @@ class AddTrackingJs
 
                 if ($settings['piwikHideAliasUrl'] && $settings['piwikAliasUrl']) {
                     $options->addPush('setDomains', '*.' . $settings['piwikAliasUrl']);
+                }
+
+                if (in_array($settings['piwikTrackAccounts'], ['username', 'email'])) {
+                    $user = $event->request->getAttribute('actor');
+
+                    if (!($user instanceof Guest)) {
+                        $userId = $user->{$settings['piwikTrackAccounts']};
+
+                        $options->addPush('setUserId', $userId);
+                    }
                 }
 
                 // Replace the ##piwik_options## has with the settings or an empty string.

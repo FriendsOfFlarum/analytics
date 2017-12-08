@@ -93,13 +93,15 @@ System.register('flagrow/analytics/components/AnalyticsPage', ['flarum/Component
 });;
 'use strict';
 
-System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal'], function (_export, _context) {
+System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/components/SettingsModal', 'flarum/components/Select'], function (_export, _context) {
     "use strict";
 
-    var SettingsModal, AnalyticsSettingsModal;
+    var SettingsModal, Select, AnalyticsSettingsModal;
     return {
         setters: [function (_flarumComponentsSettingsModal) {
             SettingsModal = _flarumComponentsSettingsModal.default;
+        }, function (_flarumComponentsSelect) {
+            Select = _flarumComponentsSelect.default;
         }],
         execute: function () {
             AnalyticsSettingsModal = function (_SettingsModal) {
@@ -162,6 +164,12 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                             return _this2.checkbox['label.' + key] = m('div', [app.translator.trans('flagrow-analytics.admin.popup.checkbox.label.' + key)]);
                         });
 
+                        var piwikTrackAccountsSetting = this.setting(this.settingsPrefix + '.piwikTrackAccounts');
+
+                        if (!piwikTrackAccountsSetting()) {
+                            piwikTrackAccountsSetting('none');
+                        }
+
                         return [m('div', { className: 'Form-group' }, [m('label', ['Google Analytics ', this.checkbox['statusGoogle']]), m('div', { style: { display: $('#statusGoogle').prop('checked') === true ? "block" : "none" } }, [this.inputs['googleTrackingCode']]), m('br'), m('label', ['Piwik ', this.checkbox['statusPiwik']]), m('div', {
                             className: 'piwik',
                             style: {
@@ -171,7 +179,15 @@ System.register('flagrow/analytics/components/AnalyticsSettingsModal', ['flarum/
                             style: {
                                 display: $('#piwikHideAliasUrl').prop('checked') === true ? "block" : "none"
                             }
-                        }, [this.inputs['piwikAliasUrl']])])])];
+                        }, [this.inputs['piwikAliasUrl']]), Select.component({
+                            options: {
+                                none: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.none'),
+                                username: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.username'),
+                                email: app.translator.trans('flagrow-analytics.admin.popup.trackAccounts.email')
+                            },
+                            value: piwikTrackAccountsSetting(),
+                            onchange: piwikTrackAccountsSetting
+                        })])])];
                     }
                 }]);
                 return AnalyticsSettingsModal;
