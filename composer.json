@@ -1,7 +1,14 @@
 {
     "name": "flagrow/flarum-ext-analytics",
     "description": "Tracks analytics using googles and piwik metric tool analytics",
-    "keywords": ["analytics", "flagrow", "flarum"],
+    "keywords": [
+        "extension",
+        "flarum",
+        "flagrow",
+        "analytics",
+        "google-analytics",
+        "piwik"
+    ],
     "type": "flarum-extension",
     "license": "MIT",
     "authors": [
@@ -11,8 +18,13 @@
             "homepage": "http://hyn.io"
         },
         {
-          "name": "Santiago Testa Biali",
-          "email": "santiago.t.biali@gmail.com"
+            "name": "Santiago Testa Biali",
+            "email": "santiago.t.biali@gmail.com"
+        },
+        {
+            "name": "Clark Winkelmann",
+            "email": "clark.winkelmann@gmail.com",
+            "homepage": "https://clarkwinkelmann.com/"
         }
     ],
     "support": {
