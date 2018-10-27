@@ -32,13 +32,13 @@
         "source": "https://github.com/flagrow/flarum-ext-analytics"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.6"
+        "flarum/core": "^0.1.0-beta.8"
     },
     "extra": {
         "flarum-extension": {
             "title": "Analytics",
             "icon": {
-                "name": "line-chart",
+                "name": "fas fa-chart-line",
                 "backgroundColor": "#74000E",
                 "color": "#BE1E31"
             }

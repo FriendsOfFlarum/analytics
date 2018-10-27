@@ -2,7 +2,7 @@ import {extend} from 'flarum/extend';
 import AdminNav from 'flarum/components/AdminNav';
 import AdminLinkButton from 'flarum/components/AdminLinkButton';
 
-import AnalyticsPage from 'flagrow/analytics/components/AnalyticsPage';
+import AnalyticsPage from './components/AnalyticsPage';
 
 export default function () {
     // add the Analytics tab to the admin navigation menu if piwik is enabled
@@ -19,7 +19,7 @@ export default function () {
         extend(AdminNav.prototype, 'items', items => {
             items.add('analytics', AdminLinkButton.component({
                 href: app.route('analytics'),
-                icon: 'line-chart',
+                icon: 'fas fa-chart-line',
                 children: app.translator.trans('flagrow-analytics.admin.page.nav.title'),
                 description: app.translator.trans('flagrow-analytics.admin.page.nav.description'),
             }));

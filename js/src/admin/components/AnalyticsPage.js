@@ -22,15 +22,12 @@ export default class AnalyticsPage extends Component {
         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
 
         return [
-            m('div', {className: 'analyticsPage'}, [
-                m('div', {className: 'piwik'}, [
-                    m('label', ['Piwik']),
-                    m('iframe', {
-                        frameborder: '0',
-                        src: this.url,
-                    }),
-                ]),
-            ]),
+            <div className="AnalyticsPage">
+                <div className="piwik">
+                    <label>Piwik</label>
+                    <iframe src={this.url} frameborder="0"></iframe>
+                </div>
+            </div>
         ];
     }
 }
