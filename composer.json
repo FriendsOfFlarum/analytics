@@ -44,7 +44,7 @@
             }
         },
         "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/1983-flagrow-analytics-extension-tracking-user-visits"
+            "discuss": "https://discuss.flarum.org/d/1983"
         }
     },
     "autoload": {
