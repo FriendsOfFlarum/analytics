@@ -3,7 +3,7 @@
 namespace Flagrow\Analytics\Listeners;
 
 use Flagrow\Analytics\Piwik\PaqPushList;
-use Flarum\Frontend\HtmlDocument;
+use Flarum\Frontend\Document;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\Guest;
 use Illuminate\Support\Str;
@@ -18,7 +18,7 @@ class AddTrackingJs
         $this->settings = $settings;
     }
 
-    public function __invoke(HtmlDocument $document, ServerRequestInterface $request)
+    public function __invoke(Document $document, ServerRequestInterface $request)
     {
         // Add google analytics if tracking UA has been configured.
         if ($this->settings->get('flagrow.analytics.statusGoogle') && $this->settings->get('flagrow.analytics.googleTrackingCode')) {
