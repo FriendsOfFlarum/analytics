@@ -3,8 +3,10 @@ import Page from 'flarum/components/Page';
 
 app.initializers.add('flagrow-analytics', () => {
     extend(Page.prototype, 'init', function (vdom) {
-        if (typeof ga !== 'undefined') {
-            ga('send', 'pageview', {page: m.route()});
+        if (app.data.googleTrackingCode && typeof gtag !== 'undefined') {
+            gtag('config', app.data.googleTrackingCode, {
+                'page_path': m.route()
+            });
         }
         if (typeof _paq !== 'undefined') {
             _paq.push(['setCustomUrl', m.route()]);

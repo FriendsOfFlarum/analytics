@@ -118,9 +118,9 @@ __webpack_require__.r(__webpack_exports__);
 
 app.initializers.add('flagrow-analytics', function () {
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_Page__WEBPACK_IMPORTED_MODULE_1___default.a.prototype, 'init', function (vdom) {
-    if (typeof ga !== 'undefined') {
-      ga('send', 'pageview', {
-        page: m.route()
+    if (app.data.googleTrackingCode && typeof gtag !== 'undefined') {
+      gtag('config', app.data.googleTrackingCode, {
+        'page_path': m.route()
       });
     }
 

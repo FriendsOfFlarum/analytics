@@ -20,13 +20,25 @@ class AddTrackingJs
 
     public function __invoke(Document $document, ServerRequestInterface $request)
     {
-        // Add google analytics if tracking UA has been configured.
-        if ($this->settings->get('flagrow.analytics.statusGoogle') && $this->settings->get('flagrow.analytics.googleTrackingCode')) {
-            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
-            $js = str_replace("%%TRACKING_CODE%%", $this->settings->get('flagrow.analytics.googleTrackingCode'), $rawJs);
-            $document->head[] = $js;
-        }
+        $this->analytics($document);
 
+        $this->piwik($document, $request);
+    }
+
+    private function analytics(Document &$document)
+    {
+        // Add google analytics if tracking UA has been configured.
+        if ($this->settings->get('flagrow.analytics.statusGoogle') && $code = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
+            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
+            $js = str_replace("%%TRACKING_CODE%%", $code, $rawJs);
+            $document->head[] = $js;
+
+            $document->payload['googleTrackingCode'] = $code;
+        }
+    }
+
+    private function piwik(Document &$document, ServerRequestInterface $request)
+    {
         // get the validation data
         $settings = [
             'statusPiwik' => $this->settings->get('flagrow.analytics.statusPiwik'),
