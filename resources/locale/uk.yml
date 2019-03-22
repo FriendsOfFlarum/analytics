@@ -1,0 +1,36 @@
+flagrow-analytics:
+    admin:
+        popup:
+            title: Налаштування аналітики
+
+            section:
+                googleAnalytics: Google Analytics
+                piwik: Piwik
+
+            field:
+                statusGoogle: Увімкнути Google Analytics
+                googleTrackingCode: Tracking Code ID
+                statusPiwik: Увімкнути Piwik
+                piwikUrl: Домен Piwik або url
+                piwikSiteId: Site ID
+                piwikTrackSubdomain: Відстежувати відвідувачів у всіх субдоменах Flarum
+                piwikPrependDomain: При відстеженні попередньо накласти домен до назви сторінки
+                piwikHideAliasUrl: У звіті "Outlinks" приховати кліки до відомих псевдонімів URL-адрес
+                piwikAliasUrl: Псевдоніми Url
+                piwikTrackAccounts: Відстежувати облікові записи окремих користувачів
+                piwikAuthToken: Authentication Token
+
+            placeholder:
+                piwikAuthToken: |
+                    Заповніть цей токен, щоб увімкнути вкладку статистики Piwik на панелі адміністратора.
+                    Його можна знайти в меню Settings > Personal > API Authentication Token.
+
+            trackAccounts:
+                none: Не відстежувати
+                username: Відстеження по імені користувача
+                email: Відстеження по електронній пошті
+
+        page:
+            nav:
+                title: Аналітика
+                description: Погляньте на статистику
