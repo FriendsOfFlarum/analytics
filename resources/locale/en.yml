@@ -10,6 +10,7 @@ flagrow-analytics:
             field:
                 statusGoogle: Enable Google Analytics
                 googleTrackingCode: Tracking Code ID
+                googleGTMCode: GTM code ID
                 statusPiwik: Enable Piwik
                 piwikUrl: Piwik domain or url
                 piwikSiteId: Site ID

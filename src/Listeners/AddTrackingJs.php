@@ -27,13 +27,16 @@ class AddTrackingJs
 
     private function analytics(Document &$document)
     {
-        // Add google analytics if tracking UA has been configured.
-        if ($this->settings->get('flagrow.analytics.statusGoogle') && $code = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
-            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
-            $js = str_replace("%%TRACKING_CODE%%", $code, $rawJs);
-            $document->head[] = $js;
 
-            $document->payload['googleTrackingCode'] = $code;
+        $gtmCode = $this->settings->get('flagrow.analytics.googleGTMCode');
+        $code = $this->settings->get('flagrow.analytics.googleTrackingCode');
+        // Add google analytics if tracking UA has been configured.
+        if ($this->settings->get('flagrow.analytics.statusGoogle') && $gtmCode && $code) {
+            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
+            $js = str_replace("%%GTM_TRACKING_CODE%%", $gtmCode, $rawJs);
+            $js = str_replace("%%TRACKING_CODE%%", $code, $js);
+            $document->head[] = $js;
+            $document->payload['googleGTMCode'] = $code;
         }
     }
 

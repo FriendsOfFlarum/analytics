@@ -8,6 +8,11 @@ app.initializers.add('flagrow-analytics', () => {
                 'page_path': m.route()
             });
         }
+        if (app.data.googleGTMCode && typeof gtag !== 'undefined') {
+            gtag('config', app.data.googleGTMCode, {
+                'page_path': m.route()
+            });
+        }
         if (typeof _paq !== 'undefined') {
             _paq.push(['setCustomUrl', m.route()]);
             _paq.push(['trackPageView']);
