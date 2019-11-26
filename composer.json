@@ -1,5 +1,5 @@
 {
-    "name": "giffgaff/flarum-ext-analytics",
+    "name": "flagrow/flarum-ext-analytics",
     "description": "Tracks analytics using googles and piwik metric tool analytics",
     "keywords": [
         "extension",
