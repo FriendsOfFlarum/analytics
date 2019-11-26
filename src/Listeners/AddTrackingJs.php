@@ -27,16 +27,25 @@ class AddTrackingJs
 
     private function analytics(Document &$document)
     {
+        $statusGoogle = $this->settings->get('flagrow.analytics.statusGoogle');
 
-        $gtmCode = $this->settings->get('flagrow.analytics.googleGTMCode');
-        $code = $this->settings->get('flagrow.analytics.googleTrackingCode');
         // Add google analytics if tracking UA has been configured.
-        if ($this->settings->get('flagrow.analytics.statusGoogle') && $gtmCode && $code) {
-            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
-            $js = str_replace("%%GTM_TRACKING_CODE%%", $gtmCode, $rawJs);
-            $js = str_replace("%%TRACKING_CODE%%", $code, $js);
+        if ($statusGoogle && $googleTrackingCode = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
+            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
+            $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $rawJs);
             $document->head[] = $js;
-            $document->payload['googleGTMCode'] = $code;
+
+            $document->payload['googleTrackingCode'] = $googleTrackingCode;
+        }
+
+        // Add google tag manager if tracking GTM has been configured.
+        if ($statusGoogle && $googleGTMCode = $this->settings->get('flagrow.analytics.googleGTMCode')) {
+            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
+            $js = str_replace("%%GTM_TRACKING_CODE%%", $googleGTMCode, $rawJs);
+            $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
+            $document->head[] = $js;
+
+            $document->payload['googleGTMCode'] = $googleGTMCode;
         }
     }
 
