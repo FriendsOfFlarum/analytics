@@ -10,6 +10,7 @@ app.initializers.add('flagrow-analytics', () => {
         }
         if (app.data.googleGTMCode && typeof gtagpush !== 'undefined') {
             gtagpush({
+                'event': 'custom_event',
                 'virtualpath': m.route()
             });
         }
