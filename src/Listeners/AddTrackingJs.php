@@ -27,25 +27,31 @@ class AddTrackingJs
 
     private function analytics(Document &$document)
     {
-        $statusGoogle = $this->settings->get('flagrow.analytics.statusGoogle');
+        if($statusGoogle = $this->settings->get('flagrow.analytics.statusGoogle')) {
+            $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
 
-        // Add google analytics if tracking UA has been configured.
-        if ($statusGoogle && $googleTrackingCode = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
-            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
-            $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $rawJs);
+            // Add google analytics if tracking UA has been configured.
+            if ($googleTrackingCode = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
+                $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
+
+                $document->payload['googleTrackingCode'] = $googleTrackingCode;
+            }
+
+            // Add google tag manager if tracking GTM has been configured.
+            if ($googleGTMCode = $this->settings->get('flagrow.analytics.googleGTMCode')) {
+                $js = str_replace("%%GTM_TRACKING_CODE%%", $googleGTMCode, $js);
+                $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
+
+                $document->payload['googleGTMCode'] = $googleGTMCode;
+            }
+
+            if ($optTrackingCode = $this->settings->get('flagrow.analytics.optTrackingCode')) {
+                $js = str_replace("%%OPT_TRACKING_CODE%%", $optTrackingCode, $js);
+
+                $document->payload['optTrackingCode'] = $optTrackingCode;
+            }
+
             $document->head[] = $js;
-
-            $document->payload['googleTrackingCode'] = $googleTrackingCode;
-        }
-
-        // Add google tag manager if tracking GTM has been configured.
-        if ($statusGoogle && $googleGTMCode = $this->settings->get('flagrow.analytics.googleGTMCode')) {
-            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
-            $js = str_replace("%%GTM_TRACKING_CODE%%", $googleGTMCode, $rawJs);
-            $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
-            $document->head[] = $js;
-
-            $document->payload['googleGTMCode'] = $googleGTMCode;
         }
     }
 

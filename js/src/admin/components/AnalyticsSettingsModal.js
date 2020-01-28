@@ -33,6 +33,13 @@ export default class AnalyticsSettingsModal extends SettingsModal {
             ]),
             (this.setting(settingsPrefix + 'statusGoogle')() > 0 ? [
                 m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.optTrackingCode')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'optTrackingCode'),
+                        placeholder: 'GTM-XXXXXX',
+                    }),
+                ]),
+                m('.Form-group', [
                     m('label', app.translator.trans('flagrow-analytics.admin.popup.field.googleTrackingCode')),
                     m('input.FormControl', {
                         bidi: this.setting(settingsPrefix + 'googleTrackingCode'),
