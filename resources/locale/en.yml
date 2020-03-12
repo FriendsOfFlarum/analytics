@@ -9,9 +9,9 @@ flagrow-analytics:
 
             field:
                 statusGoogle: Enable Google Analytics
-                optTrackingCode: Optimize Tracking Code
+                optTrackingCode: Optimize Tracking Code (optional)
                 googleTrackingCode: Tracking Code ID
-                googleGTMCode: GTM code ID
+                googleGTMCode: GTM code ID (optional)
                 statusPiwik: Enable Piwik
                 piwikUrl: Piwik domain or url
                 piwikSiteId: Site ID
