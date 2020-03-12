@@ -5,13 +5,12 @@
 A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
 
 ## Screenshot
-
-![Imgur](http://i.imgur.com/tv5MQey.jpg) ![Imgur](http://i.imgur.com/GMTSzA5.jpg)
+![Google Analytics](./docs/ga.png?raw=true) ![Piwik](./docs/piwik.png?raw=true) ![Imgur](http://i.imgur.com/GMTSzA5.jpg)
 
 ## Goals
 
 - Allow Google's and Piwiki's analytic service.
-
+x§x§
 ## Installation
 
 Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually:
