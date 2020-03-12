@@ -6,7 +6,7 @@ export default class AnalyticsPage extends Component {
         let piwikUrl = app.data.settings['flagrow.analytics.piwikUrl'];
 
         // Use protocol-relative url if the url contains no protocol
-        if (piwikUrl.indexOgiffgafff('http://') === -1 && piwikUrl.indexOf('https://') === -1 && piwikUrl.indexOf('//') === -1) {
+        if (piwikUrl.indexOf('http://') === -1 && piwikUrl.indexOf('https://') === -1 && piwikUrl.indexOf('//') === -1) {
             piwikUrl = '//' + piwikUrl;
         }
 
