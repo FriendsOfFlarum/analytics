@@ -3,7 +3,7 @@ import Component from 'flarum/Component';
 export default class AnalyticsPage extends Component {
 
     view() {
-        let piwikUrl = app.data.settings['flagrow.analytics.piwikUrl'];
+        let piwikUrl = app.data.settings['fof-analytics.piwikUrl'];
 
         // Use protocol-relative url if the url contains no protocol
         if (piwikUrl.indexOf('http://') === -1 && piwikUrl.indexOf('https://') === -1 && piwikUrl.indexOf('//') === -1) {
@@ -17,8 +17,8 @@ export default class AnalyticsPage extends Component {
 
         //Call the piwik application
         this.url = piwikUrl + 'index.php';
-        this.url += '?idSite=' + app.data.settings['flagrow.analytics.piwikSiteId'];
-        this.url += '&token_auth=' + app.data.settings['flagrow.analytics.piwikAuthToken'];
+        this.url += '?idSite=' + app.data.settings['fof-analytics.piwikSiteId'];
+        this.url += '&token_auth=' + app.data.settings['fof-analytics.piwikAuthToken'];
         this.url += '&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&period=month&date=today';
 
         return [

@@ -1,6 +1,6 @@
-# Analytics by ![Flagrow logo](https://avatars0.githubusercontent.com/u/16413865?v=3&s=20) [Flagrow](https://discuss.flarum.org/d/1832-flagrow-extension-developer-group)
+# FriendsOfFlarum Analytics
 
-[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/flagrow/flarum-ext-analytics/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/flagrow/flarum-ext-analytics.svg)](https://packagist.org/packages/flagrow/flarum-ext-analytics) [![Total Downloads](https://img.shields.io/packagist/dt/flagrow/flarum-ext-analytics.svg)](https://packagist.org/packages/flagrow/flarum-ext-analytics) [![Join our Discord server](https://discordapp.com/api/guilds/240489109041315840/embed.png)](https://flagrow.io/join-discord)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/analytics/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) [![Total Downloads](https://img.shields.io/packagist/dt/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) 
 
 A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
 
@@ -18,10 +18,10 @@ A [Flarum](http://flarum.org) extension that provides your forum piwik's and goo
 
 ## Installation
 
-Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually:
+Use [Bazaar](https://discuss.flarum.org/d/5151) or install manually:
 
 ```bash
-composer require flagrow/flarum-ext-analytics
+composer require fof/analytics
 ```
 
 ## Configuration
@@ -30,18 +30,11 @@ composer require flagrow/flarum-ext-analytics
 - Visit the extensions tab in your admin to configure your analytics services.
 - Visit the Analytics tab in admin to see your piwik's analytics results.
 
-## Security
-
-If you discover a security vulnerability within Analytics, please send an email to the Flagrow team at security@flagrow.io. All security vulnerabilities will be promptly addressed.
-
-Please include as many details as possible. You can use `php flarum info` to get the PHP, Flarum and extension versions installed.
-
 ## Links
 
-- [Flarum Discuss post](https://discuss.flarum.org/d/1983-flagrow-analytics-extension-tracking-user-visits)
-- [Source code on GitHub](https://github.com/flagrow/flarum-ext-analytics)
-- [Changelog](https://github.com/flagrow/flarum-ext-analytics/blob/master/CHANGELOG.md)
-- [Report an issue](https://github.com/flagrow/flarum-ext-analytics/issues)
-- [Download via Packagist](https://packagist.org/packages/flagrow/flarum-ext-analytics)
+- [Flarum Discuss post](https://discuss.flarum.org/d/1983)
+- [Source code on GitHub](https://github.com/FriendsOfFlarum/analytics)
+- [Report an issue](https://github.com/FriendsOfFlarum/analytics/issues)
+- [Download via Packagist](https://packagist.org/packages/fof/analytics)
 
-An extension by [Flagrow](https://flagrow.io/).
+An extension by [FriendsOfFlarum](https://friendsofflarum.org/).

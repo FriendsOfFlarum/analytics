@@ -1,7 +1,7 @@
-flagrow-analytics:
+fof-analytics:
     admin:
         popup:
-            title: Analytics Settings
+            title: FoF Analytics
 
             section:
                 googleAnalytics: Google Analytics

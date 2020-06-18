@@ -1,12 +1,12 @@
 {
-    "name": "flagrow/flarum-ext-analytics",
-    "description": "Tracks analytics using googles and piwik metric tool analytics",
+    "name": "fof/analytics",
+    "description": "Tracks analytics using Google Analytics, Google Optimize/GTM and piwik",
     "keywords": [
         "extension",
         "flarum",
-        "flagrow",
         "analytics",
         "google-analytics",
+        "gtm",
         "piwik"
     ],
     "type": "flarum-extension",
@@ -25,22 +25,26 @@
             "name": "Clark Winkelmann",
             "email": "clark.winkelmann@gmail.com",
             "homepage": "https://clarkwinkelmann.com/"
+        },
+        {
+            "name": "Ian Morland",
+            "email": "ian@flarumite.com"
         }
     ],
     "support": {
-        "issues": "https://github.com/flagrow/flarum-ext-analytics/issues",
-        "source": "https://github.com/flagrow/flarum-ext-analytics"
+        "issues": "https://github.com/FriendsOfFlarum/analytics/issues",
+        "source": "https://github.com/FriendsOfFlarum/analytics"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.8"
+        "flarum/core": "^0.1.0-beta.10"
     },
     "extra": {
         "flarum-extension": {
-            "title": "Analytics",
+            "title": "FoF Analytics",
             "icon": {
                 "name": "fas fa-chart-line",
-                "backgroundColor": "#74000E",
-                "color": "#BE1E31"
+                "backgroundColor": "#e74c3c",
+                "color": "#fff"
             }
         },
         "flagrow": {
@@ -49,7 +53,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Flagrow\\Analytics\\": "src/"
+            "FoF\\Analytics\\": "src/"
         }
+    },
+    "replace": {
+        "flagrow/flarum-ext-analytics": "*"
     }
 }
