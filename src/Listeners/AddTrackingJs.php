@@ -27,13 +27,31 @@ class AddTrackingJs
 
     private function analytics(Document &$document)
     {
-        // Add google analytics if tracking UA has been configured.
-        if ($this->settings->get('flagrow.analytics.statusGoogle') && $code = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
-            $rawJs = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
-            $js = str_replace("%%TRACKING_CODE%%", $code, $rawJs);
-            $document->head[] = $js;
+        if($statusGoogle = $this->settings->get('flagrow.analytics.statusGoogle')) {
+            $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
 
-            $document->payload['googleTrackingCode'] = $code;
+            // Add google analytics if tracking UA has been configured.
+            if ($googleTrackingCode = $this->settings->get('flagrow.analytics.googleTrackingCode')) {
+                $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
+
+                $document->payload['googleTrackingCode'] = $googleTrackingCode;
+            }
+
+            // Add google tag manager if tracking GTM has been configured.
+            if ($googleGTMCode = $this->settings->get('flagrow.analytics.googleGTMCode')) {
+                $js = str_replace("%%GTM_TRACKING_CODE%%", $googleGTMCode, $js);
+                $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
+
+                $document->payload['googleGTMCode'] = $googleGTMCode;
+            }
+
+            if ($optTrackingCode = $this->settings->get('flagrow.analytics.optTrackingCode')) {
+                $js = str_replace("%%OPT_TRACKING_CODE%%", $optTrackingCode, $js);
+
+                $document->payload['optTrackingCode'] = $optTrackingCode;
+            }
+
+            $document->head[] = $js;
         }
     }
 

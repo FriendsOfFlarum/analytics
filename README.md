@@ -5,12 +5,16 @@
 A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
 
 ## Screenshot
+![Google Analytics](./docs/ga.png?raw=true)
 
-![Imgur](http://i.imgur.com/tv5MQey.jpg) ![Imgur](http://i.imgur.com/GMTSzA5.jpg)
+![Piwik](./docs/piwik.png?raw=true)
+
+![Imgur](http://i.imgur.com/GMTSzA5.jpg)
 
 ## Goals
 
 - Allow Google's and Piwiki's analytic service.
+- Use Google's Optimise to quickly understand how your community can be improved.
 
 ## Installation
 

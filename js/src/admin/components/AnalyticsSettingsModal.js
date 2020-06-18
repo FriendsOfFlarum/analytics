@@ -7,6 +7,7 @@ const settingsPrefix = 'flagrow.analytics.';
 export default class AnalyticsSettingsModal extends SettingsModal {
 
     className() {
+
         return 'AnalyticsSettingsModal Modal--small';
     }
 
@@ -36,6 +37,20 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                     m('input.FormControl', {
                         bidi: this.setting(settingsPrefix + 'googleTrackingCode'),
                         placeholder: 'UA-XXXXXXXX-X',
+                    }),
+                ]),
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.googleGTMCode')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'googleGTMCode'),
+                        placeholder: 'GTM-XXXXXXX',
+                    }),
+                ]),
+                m('.Form-group', [
+                    m('label', app.translator.trans('flagrow-analytics.admin.popup.field.optTrackingCode')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'optTrackingCode'),
+                        placeholder: 'GTM-XXXXXX',
                     }),
                 ]),
             ] : null),
