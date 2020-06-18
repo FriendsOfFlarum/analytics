@@ -1,6 +1,6 @@
 # FriendsOfFlarum Analytics
 
-[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/analytics/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) [![Total Downloads](https://img.shields.io/packagist/dt/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) 
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/analytics/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) [![Total Downloads](https://img.shields.io/packagist/dt/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) [![OpenCollective](https://img.shields.io/badge/opencollective-fof-blue.svg)](https://opencollective.com/fof/donate)
 
 A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
 
