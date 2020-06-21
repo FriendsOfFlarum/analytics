@@ -36,31 +36,39 @@ class AddTrackingJs
 
     private function analytics(Document &$document)
     {
-        if($statusGoogle = $this->settings->get('fof-analytics.statusGoogle')) {
-            $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
+        $statusGoogle = (bool) $this->settings->get('fof-analytics.statusGoogle');
+        $googleTrackingCode = $this->settings->get('fof-analytics.googleTrackingCode');
+        $googleGTMCode = $this->settings->get('fof-analytics.googleGTMCode');
+        $optTrackingCode = $this->settings->get('fof-analytics.optTrackingCode');
 
-            // Add google analytics if tracking UA has been configured.
-            if ($googleTrackingCode = $this->settings->get('fof-analytics.googleTrackingCode')) {
+        if($statusGoogle) {
+            // Add google analytics if tracking UA only has been configured.
+            if ($googleTrackingCode && !$googleGTMCode && !$optTrackingCode) {
+                $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
                 $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
 
                 $document->payload['googleTrackingCode'] = $googleTrackingCode;
+                $document->head[] = $js;
             }
 
             // Add google tag manager if tracking GTM has been configured.
-            if ($googleGTMCode = $this->settings->get('fof-analytics.googleGTMCode')) {
+            if ($googleGTMCode) {
+                $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-tag-manager.html'));
                 $js = str_replace("%%GTM_TRACKING_CODE%%", $googleGTMCode, $js);
-                $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
 
                 $document->payload['googleGTMCode'] = $googleGTMCode;
+                $document->head[] = $js;
             }
 
-            if ($optTrackingCode = $this->settings->get('fof-analytics.optTrackingCode')) {
+            // Add google analytics with google optimize plugin if configured
+            if ($googleTrackingCode && $optTrackingCode) {
+                $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-optimize.html'));
                 $js = str_replace("%%OPT_TRACKING_CODE%%", $optTrackingCode, $js);
+                $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
 
                 $document->payload['optTrackingCode'] = $optTrackingCode;
+                $document->head[] = $js;
             }
-
-            $document->head[] = $js;
         }
     }
 
