@@ -36,7 +36,8 @@
         "source": "https://github.com/FriendsOfFlarum/analytics"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.10"
+        "flarum/core": "^0.1.0-beta.14",
+        "fof/components": "^0.2.0"
     },
     "extra": {
         "flarum-extension": {

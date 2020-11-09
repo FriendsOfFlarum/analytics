@@ -28,8 +28,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                 m('label', Switch.component({
                     state: this.setting(settingsPrefix + 'statusGoogle')() > 0,
                     onchange: this.setting(settingsPrefix + 'statusGoogle'),
-                    children: app.translator.trans('fof-analytics.admin.popup.field.statusGoogle'),
-                })),
+                }, app.translator.trans('fof-analytics.admin.popup.field.statusGoogle'))),
             ]),
             (this.setting(settingsPrefix + 'statusGoogle')() > 0 ? [
                 m('.Form-group', [
@@ -59,8 +58,7 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                 m('label', Switch.component({
                     state: this.setting(settingsPrefix + 'statusPiwik')() > 0,
                     onchange: this.setting(settingsPrefix + 'statusPiwik'),
-                    children: app.translator.trans('fof-analytics.admin.popup.field.statusPiwik'),
-                })),
+                }, app.translator.trans('fof-analytics.admin.popup.field.statusPiwik'))),
             ]),
             (this.setting(settingsPrefix + 'statusPiwik')() > 0 ? [
                 m('.Form-group', [
@@ -80,22 +78,19 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                     m('label', Switch.component({
                         state: this.setting(settingsPrefix + 'piwikTrackSubdomain')() > 0,
                         onchange: this.setting(settingsPrefix + 'piwikTrackSubdomain'),
-                        children: app.translator.trans('fof-analytics.admin.popup.field.piwikTrackSubdomain'),
-                    })),
+                    }, app.translator.trans('fof-analytics.admin.popup.field.piwikTrackSubdomain'))),
                 ]),
                 m('.Form-group', [
                     m('label', Switch.component({
                         state: this.setting(settingsPrefix + 'piwikPrependDomain')() > 0,
                         onchange: this.setting(settingsPrefix + 'piwikPrependDomain'),
-                        children: app.translator.trans('fof-analytics.admin.popup.field.piwikPrependDomain'),
-                    })),
+                    }, app.translator.trans('fof-analytics.admin.popup.field.piwikPrependDomain'))),
                 ]),
                 m('.Form-group', [
                     m('label', Switch.component({
                         state: this.setting(settingsPrefix + 'piwikHideAliasUrl')() > 0,
                         onchange: this.setting(settingsPrefix + 'piwikHideAliasUrl'),
-                        children: app.translator.trans('fof-analytics.admin.popup.field.piwikHideAliasUrl'),
-                    })),
+                    }, app.translator.trans('fof-analytics.admin.popup.field.piwikHideAliasUrl'))),
                 ]),
                 (this.setting(settingsPrefix + 'piwikHideAliasUrl')() > 0 ? [
                     m('.Form-group', [
