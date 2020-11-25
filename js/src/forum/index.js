@@ -11,11 +11,11 @@ app.initializers.add('fof-analytics', () => {
         if (app.data.googleGTMCode && typeof gtagpush !== 'undefined') {
             gtagpush({
                 'event': 'custom_event',
-                'virtualpath': m.route()
+                'virtualpath': m.route.get()
             });
         }
         if (typeof _paq !== 'undefined') {
-            _paq.push(['setCustomUrl', m.route()]);
+            _paq.push(['setCustomUrl', m.route.get()]);
             _paq.push(['trackPageView']);
         }
     });
