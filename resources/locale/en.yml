@@ -1,8 +1,6 @@
 fof-analytics:
     admin:
         popup:
-            title: FoF Analytics
-
             section:
                 googleAnalytics: Google Analytics
                 piwik: Piwik
@@ -31,8 +29,3 @@ fof-analytics:
                 none: Do not track
                 username: Track by username
                 email: Track by email
-
-        page:
-            nav:
-                title: Analytics
-                description: Take a look at Statistics

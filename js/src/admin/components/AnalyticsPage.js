@@ -1,7 +1,6 @@
 import Component from 'flarum/Component';
 
 export default class AnalyticsPage extends Component {
-
     view() {
         let piwikUrl = app.data.settings['fof-analytics.piwikUrl'];
 
@@ -27,7 +26,7 @@ export default class AnalyticsPage extends Component {
                     <label>Piwik</label>
                     <iframe src={this.url} frameborder="0"></iframe>
                 </div>
-            </div>
+            </div>,
         ];
     }
 }
