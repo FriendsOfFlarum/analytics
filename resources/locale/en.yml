@@ -12,6 +12,7 @@ fof-analytics:
                 optTrackingCode: Optimize Tracking Code (optional)
                 googleTrackingCode: Tracking Code ID
                 googleGTMCode: GTM code ID (optional)
+                customGoogleTags: Custom GTags to include
                 statusPiwik: Enable Piwik
                 piwikUrl: Piwik domain or URL
                 piwikSiteId: Site ID

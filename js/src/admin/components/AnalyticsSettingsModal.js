@@ -52,6 +52,13 @@ export default class AnalyticsSettingsModal extends SettingsModal {
                         placeholder: 'GTM-XXXXXX',
                     }),
                 ]),
+                m('.Form-group', [
+                    m('label', app.translator.trans('fof-analytics.admin.popup.field.customGoogleTags')),
+                    m('input.FormControl', {
+                        bidi: this.setting(settingsPrefix + 'customGoogleTags'),
+                        placeholder: 'gtag(\'somin\',\'there\');',
+                    }),
+                ]),
             ] : null),
             m('h3', app.translator.trans('fof-analytics.admin.popup.section.piwik')),
             m('.Form-group', [

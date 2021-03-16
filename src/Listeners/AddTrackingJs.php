@@ -38,6 +38,7 @@ class AddTrackingJs
     {
         $statusGoogle = (bool) $this->settings->get('fof-analytics.statusGoogle');
         $googleTrackingCode = $this->settings->get('fof-analytics.googleTrackingCode');
+        $customGoogleTags = $this->settings->get('fof-analytics.customGoogleTags');
         $googleGTMCode = $this->settings->get('fof-analytics.googleGTMCode');
         $optTrackingCode = $this->settings->get('fof-analytics.optTrackingCode');
 
@@ -46,6 +47,7 @@ class AddTrackingJs
             if ($googleTrackingCode && !$googleGTMCode && !$optTrackingCode) {
                 $js = file_get_contents(realpath(__DIR__ . '/../../resources/js/google-analytics.html'));
                 $js = str_replace("%%TRACKING_CODE%%", $googleTrackingCode, $js);
+                $js = str_replace("%%CUSTOM_TAGS%%", $customGoogleTags, $js);
 
                 $document->payload['googleTrackingCode'] = $googleTrackingCode;
                 $document->head[] = $js;
