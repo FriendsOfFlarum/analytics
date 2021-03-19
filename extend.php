@@ -3,9 +3,9 @@
 /*
  * This file is part of fof/analytics.
  *
- * Copyright (c) 2020 FriendsOfFlarum.
+ * Copyright (c) 2021 FriendsOfFlarum.
  *
- * For the full copyright and license information, please view the LICENSE.md
+ * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -22,7 +22,7 @@ return [
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__ . '/resources/less/admin.less'),
-        
-    new Extend\Locales(__DIR__ . '/resources/locale'),
+        ->css(__DIR__.'/resources/less/admin.less'),
+
+    new Extend\Locales(__DIR__.'/resources/locale'),
 ];

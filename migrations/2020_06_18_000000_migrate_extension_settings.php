@@ -3,9 +3,9 @@
 /*
  * This file is part of fof/analytics.
  *
- * Copyright (c) 2020 FriendsOfFlarum.
+ * Copyright (c) 2021 FriendsOfFlarum.
  *
- * For the full copyright and license information, please view the LICENSE.md
+ * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -19,8 +19,8 @@ return [
         $settings = app('flarum.settings');
 
         $keys = [
-            'piwikTrackAccounts', 
-            'statusGoogle', 
+            'piwikTrackAccounts',
+            'statusGoogle',
             'googleTrackingCode',
             'googleGTMCode',
             'optTrackingCode',
@@ -31,7 +31,7 @@ return [
             'piwikPrependDomain',
             'piwikHideAliasUrl',
             'piwikAliasUrl',
-            'piwikAuthToken'
+            'piwikAuthToken',
         ];
 
         foreach ($keys as $key) {
@@ -43,5 +43,5 @@ return [
     },
     'down' => function (Builder $schema) {
         // Nothing
-    }
+    },
 ];

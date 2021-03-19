@@ -3,9 +3,9 @@
 /*
  * This file is part of fof/analytics.
  *
- * Copyright (c) 2020 FriendsOfFlarum.
+ * Copyright (c) 2021 FriendsOfFlarum.
  *
- * For the full copyright and license information, please view the LICENSE.md
+ * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
@@ -16,8 +16,10 @@ class PaqPushList
     protected $pushs = [];
 
     /**
-     * Wraps a value that should be injected in the javascript without escaping
+     * Wraps a value that should be injected in the javascript without escaping.
+     *
      * @param $value
+     *
      * @return RawExpression
      */
     public function raw($value)
@@ -26,7 +28,7 @@ class PaqPushList
     }
 
     /**
-     * Add a _paq.push() call to the list. Pass each item of the javascript array as a new parameter
+     * Add a _paq.push() call to the list. Pass each item of the javascript array as a new parameter.
      */
     public function addPush()
     {
@@ -34,20 +36,21 @@ class PaqPushList
     }
 
     /**
-     * Creates the javascript output for the _paq.push() calls
+     * Creates the javascript output for the _paq.push() calls.
+     *
      * @return string
      */
     public function asJavascript()
     {
         return implode("\n    ", array_map(function ($push) {
-            return '_paq.push([' . implode(', ', array_map(function ($item) {
-                    if ($item instanceof RawExpression) {
-                        return $item->value;
-                    }
+            return '_paq.push(['.implode(', ', array_map(function ($item) {
+                if ($item instanceof RawExpression) {
+                    return $item->value;
+                }
 
-                    // JSON encoding is used to escape data injected into javascript
-                    return json_encode($item);
-                }, $push)) . ']);';
+                // JSON encoding is used to escape data injected into javascript
+                return json_encode($item);
+            }, $push)).']);';
         }, $this->pushs));
     }
 }
