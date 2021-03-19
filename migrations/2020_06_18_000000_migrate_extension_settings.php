@@ -16,7 +16,7 @@ return [
         /**
          * @var \Flarum\Settings\SettingsRepositoryInterface
          */
-        $settings = app('flarum.settings');
+        $settings = resolve('flarum.settings');
 
         $keys = [
             'piwikTrackAccounts',

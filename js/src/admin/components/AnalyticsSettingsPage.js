@@ -1,7 +1,7 @@
-import ExtensionPage from 'flarum/components/ExtensionPage';
-import Select from 'flarum/components/Select';
-import Switch from 'flarum/components/Switch';
-import Stream from 'flarum/utils/Stream';
+import ExtensionPage from 'flarum/common/components/ExtensionPage';
+import Select from 'flarum/common/components/Select';
+import Switch from 'flarum/common/components/Switch';
+import Stream from 'flarum/common/utils/Stream';
 import AnalyticsPage from './AnalyticsPage';
 
 const settingsPrefix = 'fof-analytics.';
