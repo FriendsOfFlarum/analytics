@@ -1,8 +1,9 @@
 import { extend } from 'flarum/common/extend';
+import app from 'flarum/forum/app';
 import Page from 'flarum/common/components/Page';
 
 app.initializers.add('fof-analytics', () => {
-    extend(Page.prototype, 'oninit', function (vnode) {
+    extend(Page.prototype, 'oninit', function () {
         if (app.data.googleTrackingCode && typeof gtag !== 'undefined') {
             gtag('config', app.data.googleTrackingCode, {
                 page_path: m.route.get(),

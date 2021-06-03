@@ -1,12 +1,13 @@
 {
     "name": "fof/analytics",
-    "description": "Tracks analytics using Google Analytics, Google Optimize/GTM and piwik",
+    "description": "Tracks analytics using Google Analytics, Google Optimize/GTM and Matomo",
     "keywords": [
         "extension",
         "flarum",
         "analytics",
         "google-analytics",
         "gtm",
+        "matomo",
         "piwik"
     ],
     "type": "flarum-extension",
@@ -40,8 +41,7 @@
         }
     ],
     "require": {
-        "flarum/core": "^0.1.0-beta.16",
-        "fof/components": "^0.2.0"
+        "flarum/core": "^1.0"
     },
     "extra": {
         "flarum-extension": {

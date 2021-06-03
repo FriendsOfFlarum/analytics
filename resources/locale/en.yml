@@ -3,15 +3,15 @@ fof-analytics:
         popup:
             section:
                 googleAnalytics: Google Analytics
-                piwik: Piwik
+                piwik: Matomo
 
             field:
                 statusGoogle: Enable Google Analytics
                 optTrackingCode: Optimize Tracking Code (optional)
                 googleTrackingCode: Tracking Code ID
                 googleGTMCode: GTM code ID (optional)
-                statusPiwik: Enable Piwik
-                piwikUrl: Piwik domain or URL
+                statusPiwik: Enable Matomo
+                piwikUrl: Matomo domain or URL
                 piwikSiteId: Site ID
                 piwikTrackSubdomain: Track visitors across all subdomains of Flarum
                 piwikPrependDomain: Prepend the site domain to the page title when tracking
@@ -22,10 +22,13 @@ fof-analytics:
 
             placeholder:
                 piwikAuthToken: |
-                    Fill this token to enable a Piwik stats tab in the admin panel.
+                    Fill this token to enable a Matomo stats widget in the admin panel.
                     You can find it in Settings > Personal > API Authentication Token.
 
             trackAccounts:
                 none: Do not track
                 username: Track by username
                 email: Track by email
+
+        matomo-widget:
+            title: Matomo
