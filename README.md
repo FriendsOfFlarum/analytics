@@ -2,7 +2,7 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/analytics/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) [![Total Downloads](https://img.shields.io/packagist/dt/fof/analytics.svg)](https://packagist.org/packages/fof/analytics) [![OpenCollective](https://img.shields.io/badge/opencollective-fof-blue.svg)](https://opencollective.com/fof/donate)
 
-A [Flarum](http://flarum.org) extension that provides your forum piwik's and google's analytics features.
+A [Flarum](https://flarum.org/) extension that adds Google or Matomo analytics features to your forum.
 
 ## Screenshot
 ![Google Analytics](./docs/ga.png?raw=true)
@@ -13,22 +13,20 @@ A [Flarum](http://flarum.org) extension that provides your forum piwik's and goo
 
 ## Goals
 
-- Allow Google's and Piwiki's analytic service.
-- Use Google's Optimise to quickly understand how your community can be improved.
+- Allow Google and Matomo analytics service.
+- Use Google Optimise to quickly understand how your community can be improved.
 
 ## Installation
 
-Use [Bazaar](https://discuss.flarum.org/d/5151) or install manually:
-
 ```bash
-composer require fof/analytics
+composer require fof/analytics:*
 ```
 
 ## Configuration
 
-- Piwiki's url should not end with an '/', ex: domain.com or domain.com/piwik
-- Visit the extensions tab in your admin to configure your analytics services.
-- Visit the Analytics tab in admin to see your piwik's analytics results.
+- Matomo's URL should not end with an `/`, ex: `domain.com` or `domain.com/matomo`.
+- Visit the admin panel to configure your analytics services.
+- If enabled, visit the Analytics page in admin to see your Matomo analytics results.
 
 ## Links
 

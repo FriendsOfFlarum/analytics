@@ -34,7 +34,7 @@ class AddTrackingJs
         $this->piwik($document, $request);
     }
 
-    private function analytics(Document &$document)
+    private function analytics(Document $document)
     {
         $statusGoogle = (bool) $this->settings->get('fof-analytics.statusGoogle');
         $googleTrackingCode = $this->settings->get('fof-analytics.googleTrackingCode');

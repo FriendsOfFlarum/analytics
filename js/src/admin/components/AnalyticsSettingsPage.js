@@ -1,16 +1,12 @@
-import ExtensionPage from 'flarum/common/components/ExtensionPage';
+import app from 'flarum/admin/app';
+import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import Select from 'flarum/common/components/Select';
 import Switch from 'flarum/common/components/Switch';
-import Stream from 'flarum/common/utils/Stream';
-import AnalyticsPage from './AnalyticsPage';
+import MatomoWidget from './MatomoWidget';
 
 const settingsPrefix = 'fof-analytics.';
 
-export default class AnalyticsSettingsModal extends ExtensionPage {
-    oninit(vnode) {
-        super.oninit(vnode);
-    }
-
+export default class AnalyticsSettingsPage extends ExtensionPage {
     content() {
         const piwikTrackAccountsSetting = this.setting(settingsPrefix + 'piwikTrackAccounts');
 
@@ -20,12 +16,7 @@ export default class AnalyticsSettingsModal extends ExtensionPage {
 
         return [
             m('.container', [
-                Stream(app.data.settings['fof-analytics.statusPiwik'])() &&
-                Stream(app.data.settings['fof-analytics.piwikUrl'])() &&
-                Stream(app.data.settings['fof-analytics.piwikSiteId'])() &&
-                Stream(app.data.settings['fof-analytics.piwikAuthToken'])()
-                    ? [AnalyticsPage.component()]
-                    : null,
+                MatomoWidget.component(),
                 m('.AnalyticsSettingsPage', [
                     m('h3', app.translator.trans('fof-analytics.admin.popup.section.googleAnalytics')),
                     m('.Form-group', [
@@ -84,7 +75,7 @@ export default class AnalyticsSettingsModal extends ExtensionPage {
                                   m('label', app.translator.trans('fof-analytics.admin.popup.field.piwikUrl')),
                                   m('input.FormControl', {
                                       bidi: this.setting(settingsPrefix + 'piwikUrl'),
-                                      placeholder: 'piwik.example.com',
+                                      placeholder: 'matomo.example.com',
                                   }),
                               ]),
                               m('.Form-group', [

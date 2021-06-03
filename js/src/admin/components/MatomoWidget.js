@@ -1,7 +1,18 @@
+import app from 'flarum/admin/app';
 import Component from 'flarum/common/Component';
 
-export default class AnalyticsPage extends Component {
+export default class MatomoWidget extends Component {
     view() {
+        // If Matomo isn't enabled, we don't render the widget
+        if (
+            !app.data.settings['fof-analytics.statusPiwik'] ||
+            !app.data.settings['fof-analytics.piwikUrl'] ||
+            !app.data.settings['fof-analytics.piwikSiteId'] ||
+            !app.data.settings['fof-analytics.piwikAuthToken']
+        ) {
+            return null;
+        }
+
         let piwikUrl = app.data.settings['fof-analytics.piwikUrl'];
 
         // Use protocol-relative url if the url contains no protocol
@@ -23,7 +34,7 @@ export default class AnalyticsPage extends Component {
         return [
             <div className="AnalyticsPage">
                 <div className="piwik">
-                    <label>Piwik</label>
+                    <label>{app.translator.trans('fof-analytics.admin.matomo-widget.title')}</label>
                     <iframe src={this.url} frameborder="0"></iframe>
                 </div>
             </div>,

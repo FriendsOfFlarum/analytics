@@ -1,12 +1,13 @@
+<!-- Matomo -->
 <script type="text/javascript">
-    // inject Piwik analytics code by fof/analytics
-    var _paq = _paq || [];
+    var _paq = window._paq = window._paq || [];
     ##piwik_options##
     _paq.push(['enableLinkTracking']);
-    (function () {
-    var u="##piwik_url##";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    (function() {
+        var u="##piwik_url##";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
 </script>
+<!-- End Matomo Code -->
