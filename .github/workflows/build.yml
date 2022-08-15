@@ -2,15 +2,34 @@ name: Build JavaScript assets
 
 on:
     push:
-        branches:
-            - master
+    pull_request:
 
 jobs:
     build:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@master
-            - uses: flarum/action-build@master
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Check out code
+              uses: actions/checkout@v3
+
+            - name: Set up Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16.x
+                  cache: "npm"
+                  cache-dependency-path: js/package-lock.json
+
+            - name: Build JS
+              uses: flarum/action-build@3
+              if: github.ref != 'refs/heads/master' || github.event_name != 'push'
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  package_manager: npm
+                  do_not_commit: true
+
+            - name: Build and commit JS
+              uses: flarum/action-build@3
+              if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  package_manager: npm
