@@ -6,7 +6,7 @@ fof-analytics:
                 piwik: Matomo
 
             field:
-                statusGoogle: Enable Google Analytics
+                statusGoogle: Enable Google Analytics (UA/GA4)
                 optTrackingCode: Optimize Tracking Code (optional)
                 googleTrackingCode: Tracking Code ID
                 googleGTMCode: GTM code ID (optional)

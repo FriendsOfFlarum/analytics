@@ -37,7 +37,7 @@ export default class AnalyticsSettingsPage extends ExtensionPage {
                   m('label', app.translator.trans('fof-analytics.admin.popup.field.googleTrackingCode')),
                   m('input.FormControl', {
                     bidi: this.setting(settingsPrefix + 'googleTrackingCode'),
-                    placeholder: 'UA-XXXXXXXX-X',
+                    placeholder: 'UA-XXXXXXXX-X / G-XXXXXXXXXX',
                   }),
                 ]),
                 m('.Form-group', [
