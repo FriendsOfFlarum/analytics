@@ -5,10 +5,14 @@ import Page from 'flarum/common/components/Page';
 app.initializers.add('fof-analytics', () => {
   // Supply user IDs for cross-device tracking
   setTimeout(() => {
-    if (app.data.googleTrackingCode && typeof gtag !== 'undefined' && app.session.user) {
-      gtag('config', app.data.googleTrackingCode, {
-        user_id: app.session.user.id(),
-      });
+    if (app.data.googleTrackingCode && typeof gtag !== 'undefined') {
+      gtag('config', app.data.googleTrackingCode);
+
+      if (app.session.user) {
+        gtag('config', app.data.googleTrackingCode, {
+          user_id: app.session.user.id(),
+        });
+      }
     }
   }, 0);
 
