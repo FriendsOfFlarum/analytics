@@ -20,7 +20,7 @@ jobs:
                   cache-dependency-path: js/package-lock.json
 
             - name: Build JS
-              uses: flarum/action-build@3
+              uses: flarum/action-build@v3
               if: github.ref != 'refs/heads/master' || github.event_name != 'push'
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -28,7 +28,7 @@ jobs:
                   do_not_commit: true
 
             - name: Build and commit JS
-              uses: flarum/action-build@3
+              uses: flarum/action-build@v3
               if: github.ref == 'refs/heads/master' && github.event_name == 'push'
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
