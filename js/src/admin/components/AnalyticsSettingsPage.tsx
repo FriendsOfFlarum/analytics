@@ -21,10 +21,7 @@ export default class AnalyticsSettingsPage extends ExtensionPage {
           <h3>{app.translator.trans('fof-analytics.admin.popup.section.googleAnalytics')}</h3>
           <div className="Form-group">
             <label>
-              <Switch
-                state={this.setting(settingsPrefix + 'statusGoogle')() > 0}
-                onchange={this.setting(settingsPrefix + 'statusGoogle')}
-              >
+              <Switch state={this.setting(settingsPrefix + 'statusGoogle')() > 0} onchange={this.setting(settingsPrefix + 'statusGoogle')}>
                 {app.translator.trans('fof-analytics.admin.popup.field.statusGoogle')}
               </Switch>
             </label>
@@ -41,29 +38,18 @@ export default class AnalyticsSettingsPage extends ExtensionPage {
               </div>
               <div className="Form-group">
                 <label>{app.translator.trans('fof-analytics.admin.popup.field.googleGTMCode')}</label>
-                <input
-                  className="FormControl"
-                  bidi={this.setting(settingsPrefix + 'googleGTMCode')}
-                  placeholder="GTM-XXXXXXX"
-                />
+                <input className="FormControl" bidi={this.setting(settingsPrefix + 'googleGTMCode')} placeholder="GTM-XXXXXXX" />
               </div>
               <div className="Form-group">
                 <label>{app.translator.trans('fof-analytics.admin.popup.field.optTrackingCode')}</label>
-                <input
-                  className="FormControl"
-                  bidi={this.setting(settingsPrefix + 'optTrackingCode')}
-                  placeholder="GTM-XXXXXX"
-                />
+                <input className="FormControl" bidi={this.setting(settingsPrefix + 'optTrackingCode')} placeholder="GTM-XXXXXX" />
               </div>
             </>
           )}
           <h3>{app.translator.trans('fof-analytics.admin.popup.section.piwik')}</h3>
           <div className="Form-group">
             <label>
-              <Switch
-                state={this.setting(settingsPrefix + 'statusPiwik')() > 0}
-                onchange={this.setting(settingsPrefix + 'statusPiwik')}
-              >
+              <Switch state={this.setting(settingsPrefix + 'statusPiwik')() > 0} onchange={this.setting(settingsPrefix + 'statusPiwik')}>
                 {app.translator.trans('fof-analytics.admin.popup.field.statusPiwik')}
               </Switch>
             </label>
@@ -72,18 +58,11 @@ export default class AnalyticsSettingsPage extends ExtensionPage {
             <>
               <div className="Form-group">
                 <label>{app.translator.trans('fof-analytics.admin.popup.field.piwikUrl')}</label>
-                <input
-                  className="FormControl"
-                  bidi={this.setting(settingsPrefix + 'piwikUrl')}
-                  placeholder="matomo.example.com"
-                />
+                <input className="FormControl" bidi={this.setting(settingsPrefix + 'piwikUrl')} placeholder="matomo.example.com" />
               </div>
               <div className="Form-group">
                 <label>{app.translator.trans('fof-analytics.admin.popup.field.piwikSiteId')}</label>
-                <input
-                  className="FormControl"
-                  bidi={this.setting(settingsPrefix + 'piwikSiteId')}
-                />
+                <input className="FormControl" bidi={this.setting(settingsPrefix + 'piwikSiteId')} />
               </div>
               <div className="Form-group">
                 <label>
@@ -118,10 +97,7 @@ export default class AnalyticsSettingsPage extends ExtensionPage {
               {this.setting(settingsPrefix + 'piwikHideAliasUrl')() > 0 && (
                 <div className="Form-group">
                   <label>{app.translator.trans('fof-analytics.admin.popup.field.piwikAliasUrl')}</label>
-                  <input
-                    className="FormControl"
-                    bidi={this.setting(settingsPrefix + 'piwikAliasUrl')}
-                  />
+                  <input className="FormControl" bidi={this.setting(settingsPrefix + 'piwikAliasUrl')} />
                 </div>
               )}
               <div className="Form-group">
@@ -143,15 +119,11 @@ export default class AnalyticsSettingsPage extends ExtensionPage {
                   bidi={this.setting(settingsPrefix + 'piwikAuthToken')}
                   placeholder="00112233445566778899aabbccddeeff"
                 />
-                <div className="helpText">
-                  {app.translator.trans('fof-analytics.admin.popup.placeholder.piwikAuthToken')}
-                </div>
+                <div className="helpText">{app.translator.trans('fof-analytics.admin.popup.placeholder.piwikAuthToken')}</div>
               </div>
             </>
           )}
-          <div className="Form-group">
-            {this.submitButton()}
-          </div>
+          <div className="Form-group">{this.submitButton()}</div>
         </div>
       </div>
     );
