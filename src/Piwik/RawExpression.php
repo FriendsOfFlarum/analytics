@@ -13,7 +13,7 @@ namespace FoF\Analytics\Piwik;
 
 class RawExpression
 {
-    public function __construct(public $value)
+    public function __construct(public string $value)
     {
     }
 }

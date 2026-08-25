@@ -24,14 +24,14 @@ class AddTrackingJs
     {
     }
 
-    public function __invoke(Document $document, ServerRequestInterface $request)
+    public function __invoke(Document $document, ServerRequestInterface $request): void
     {
         $this->analytics($document);
 
         $this->piwik($document, $request);
     }
 
-    private function analytics(Document $document)
+    private function analytics(Document $document): void
     {
         $statusGoogle = (bool) $this->settings->get('fof-analytics.statusGoogle');
         $googleTrackingCode = $this->settings->get('fof-analytics.googleTrackingCode');
@@ -69,7 +69,7 @@ class AddTrackingJs
         }
     }
 
-    private function piwik(Document &$document, ServerRequestInterface $request)
+    private function piwik(Document &$document, ServerRequestInterface $request): void
     {
         // get the validation data
         $settings = [
