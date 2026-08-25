@@ -13,16 +13,15 @@ namespace FoF\Analytics\Piwik;
 
 class PaqPushList
 {
-    protected $pushs = [];
+    /**
+     * @var array<int, array<int, mixed>>
+     */
+    protected array $pushs = [];
 
     /**
      * Wraps a value that should be injected in the javascript without escaping.
-     *
-     * @param $value
-     *
-     * @return RawExpression
      */
-    public function raw($value)
+    public function raw(string $value): RawExpression
     {
         return new RawExpression($value);
     }
@@ -30,17 +29,15 @@ class PaqPushList
     /**
      * Add a _paq.push() call to the list. Pass each item of the javascript array as a new parameter.
      */
-    public function addPush()
+    public function addPush(): void
     {
         $this->pushs[] = func_get_args();
     }
 
     /**
      * Creates the javascript output for the _paq.push() calls.
-     *
-     * @return string
      */
-    public function asJavascript()
+    public function asJavascript(): string
     {
         return implode("\n    ", array_map(function ($push) {
             return '_paq.push(['.implode(', ', array_map(function ($item) {
