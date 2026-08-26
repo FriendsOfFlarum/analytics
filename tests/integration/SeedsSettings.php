@@ -33,7 +33,7 @@ trait SeedsSettings
             $path = $db['database'];
 
             // Relative paths are resolved against the test installation.
-            if (! str_starts_with($path, '/')) {
+            if (!str_starts_with($path, '/')) {
                 $path = $this->tmpDir().'/'.$path;
             }
 
