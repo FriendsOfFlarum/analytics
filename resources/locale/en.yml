@@ -32,3 +32,17 @@ fof-analytics:
 
         matomo-widget:
             title: Matomo
+
+    forum:
+        consent:
+            cookies:
+                ga: Tells visits apart, so repeat visits are not counted as new people.
+                gat: Limits how often data is sent to Google.
+                gid: Tells visits apart, kept for 24 hours.
+                utm: Older Google Analytics cookies, recording how you reached the site.
+                pk_id: Tells visits apart, so repeat visits are not counted as new people.
+                pk_ses: Tracks the current visit, kept for 30 minutes.
+                pk_ref: Records how you reached the site.
+                pk_cvar: Stores custom details about the current visit.
+                pk_hsr: Records the current visit for heatmaps and session recording.
+                matomo_sessid: Keeps your Matomo session while it is being recorded.

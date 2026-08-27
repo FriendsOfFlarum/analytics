@@ -9,4 +9,3 @@ parameters:
   excludePaths:
     - *.blade.php
   databaseMigrationsPath: ['migrations']
-  

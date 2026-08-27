@@ -51,15 +51,20 @@
                 "name": "fas fa-chart-line",
                 "backgroundColor": "#e74c3c",
                 "color": "#fff"
-            }
-        },
-        "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/1983"
+            },
+            "optional-dependencies": [
+                "fof/cookie-consent"
+            ]
         },
         "flarum-cli": {
             "modules": {
                 "githubActions": true
             }
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FoF\\Analytics\\Tests\\": "tests/"
         }
     },
     "autoload": {
@@ -72,14 +77,23 @@
     },
     "require-dev": {
         "flarum/phpstan": "^2.0.0",
-        "flarum/testing": "^2.0.0"
+        "flarum/testing": "^2.0.0",
+        "fof/cookie-consent": "^2.0.0"
     },
     "scripts": {
         "analyse:phpstan": "phpstan analyse",
+        "test": [
+            "@test:integration"
+        ],
+        "test:integration": "phpunit -d memory_limit=512M -c tests/phpunit.integration.xml",
+        "test:setup": "@php tests/integration/setup.php",
         "clear-cache:phpstan": "phpstan clear-result-cache"
     },
     "scripts-descriptions": {
-        "analyse:phpstan": "Run static analysis"
+        "analyse:phpstan": "Run static analysis",
+        "test": "Runs all tests.",
+        "test:integration": "Runs all integration tests.",
+        "test:setup": "Sets up a database for use with integration tests. Execute this only once."
     },
     "minimum-stability": "beta",
     "prefer-stable": true

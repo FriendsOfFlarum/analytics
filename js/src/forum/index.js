@@ -2,18 +2,36 @@ import { extend } from 'flarum/common/extend';
 import app from 'flarum/forum/app';
 import Page from 'flarum/common/components/Page';
 
+/**
+ * Configure Google Analytics, supplying the user ID for cross-device tracking.
+ *
+ * Returns whether it ran: with fof/cookie-consent installed the tracking script
+ * is held inert until the visitor accepts, so `gtag` may not exist yet.
+ */
+function configureGoogle() {
+  if (!app.data.googleTrackingCode || typeof gtag === 'undefined') return false;
+
+  gtag('config', app.data.googleTrackingCode);
+
+  if (app.session.user) {
+    gtag('config', app.data.googleTrackingCode, {
+      user_id: app.session.user.id(),
+    });
+  }
+
+  return true;
+}
+
 app.initializers.add('fof-analytics', () => {
   // Supply user IDs for cross-device tracking
   setTimeout(() => {
-    if (app.data.googleTrackingCode && typeof gtag !== 'undefined') {
-      gtag('config', app.data.googleTrackingCode);
+    if (configureGoogle()) return;
 
-      if (app.session.user) {
-        gtag('config', app.data.googleTrackingCode, {
-          user_id: app.session.user.id(),
-        });
-      }
-    }
+    // The script was held pending consent. fof/cookie-consent activates it
+    // when the visitor accepts, so configure it then instead — otherwise this
+    // first `config` call would be lost and only later page views tracked.
+    window.addEventListener('cc:onConsent', configureGoogle);
+    window.addEventListener('cc:onChange', configureGoogle);
   }, 0);
 
   extend(Page.prototype, 'oninit', function () {
