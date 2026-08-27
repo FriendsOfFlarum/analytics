@@ -24,11 +24,9 @@ trait SeedsSettings
 {
     use \Flarum\Testing\integration\UsesTmpDir;
 
-    protected function seedSettings(array $settings): void
+    /** Connect straight to the test database, whichever driver it uses. */
+    private function connect(array $db): \PDO
     {
-        $config = include $this->tmpDir().'/config.php';
-        $db = $config['database'];
-
         if ($db['driver'] === 'sqlite') {
             $path = $db['database'];
 
@@ -37,20 +35,37 @@ trait SeedsSettings
                 $path = $this->tmpDir().'/'.$path;
             }
 
-            $pdo = new \PDO('sqlite:'.$path);
-        } else {
-            $pdo = new \PDO(
-                sprintf('mysql:host=%s;port=%s;dbname=%s', $db['host'], $db['port'] ?? 3306, $db['database']),
-                $db['username'],
-                $db['password']
-            );
+            return new \PDO('sqlite:'.$path);
         }
 
+        $pgsql = $db['driver'] === 'pgsql';
+
+        // MariaDB is driven by PDO's mysql driver.
+        $driver = $pgsql ? 'pgsql' : 'mysql';
+        $port = $db['port'] ?? ($pgsql ? 5432 : 3306);
+
+        return new \PDO(
+            sprintf('%s:host=%s;port=%s;dbname=%s', $driver, $db['host'], $port, $db['database']),
+            $db['username'],
+            $db['password']
+        );
+    }
+
+    protected function seedSettings(array $settings): void
+    {
+        $config = include $this->tmpDir().'/config.php';
+        $db = $config['database'];
+
+        $pdo = $this->connect($db);
+
+        // `key` is reserved in both MySQL and PostgreSQL, but each quotes it
+        // differently.
+        $key = $db['driver'] === 'pgsql' ? '"key"' : '`key`';
         $prefix = $db['prefix'] ?? '';
 
-        foreach ($settings as $key => $value) {
-            $pdo->prepare("DELETE FROM {$prefix}settings WHERE `key` = ?")->execute([$key]);
-            $pdo->prepare("INSERT INTO {$prefix}settings (`key`, `value`) VALUES (?, ?)")->execute([$key, $value]);
+        foreach ($settings as $setting => $value) {
+            $pdo->prepare("DELETE FROM {$prefix}settings WHERE $key = ?")->execute([$setting]);
+            $pdo->prepare("INSERT INTO {$prefix}settings ($key, value) VALUES (?, ?)")->execute([$setting, $value]);
         }
     }
 }
