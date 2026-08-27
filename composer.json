@@ -78,7 +78,7 @@
     "require-dev": {
         "flarum/phpstan": "^2.0.0",
         "flarum/testing": "^2.0.0",
-        "fof/cookie-consent": "^2.0@dev"
+        "fof/cookie-consent": "^2.0.0"
     },
     "scripts": {
         "analyse:phpstan": "phpstan analyse",
