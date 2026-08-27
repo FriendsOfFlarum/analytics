@@ -9,11 +9,3 @@ parameters:
   excludePaths:
     - *.blade.php
   databaseMigrationsPath: ['migrations']
-
-  # fof/cookie-consent is an optional dependency and is not installed in CI,
-  # so its classes cannot be resolved. Remove these once it is released.
-  ignoreErrors:
-    - '#unknown class FoF\\CookieConsent\\#'
-    - '#class FoF\\CookieConsent\\[A-Za-z\\]+ not found#'
-    - '#has invalid type FoF\\CookieConsent\\#'
-  
