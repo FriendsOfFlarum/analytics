@@ -121,7 +121,7 @@ class AddTrackingJs
             if (in_array($settings['piwikTrackAccounts'], ['username', 'email'])) {
                 $user = $request->getAttribute('actor');
 
-                if (!($user instanceof Guest)) {
+                if ($user && !($user instanceof Guest)) {
                     $userId = $user->{$settings['piwikTrackAccounts']};
 
                     $options->addPush('setUserId', $userId);
