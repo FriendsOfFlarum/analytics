@@ -3,4 +3,4 @@ export default class MatomoWidget extends Component<any, undefined> {
     view(): JSX.Element[] | null;
     url: string | undefined;
 }
-import Component from "flarum/common/Component";
+import Component from 'flarum/common/Component';
